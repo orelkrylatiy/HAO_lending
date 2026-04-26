@@ -26,7 +26,7 @@ export default function Home() {
         <Teachers />
         <Journey />
         <Reviews />
-        <Pricing />
+        <Pricing onSignup={() => setModalOpen(true)} />
         <FAQ />
         <HowItWorks />
         <WhyUs />

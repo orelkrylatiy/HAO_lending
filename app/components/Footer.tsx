@@ -63,7 +63,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-10 pt-6 border-t border-white/20">
-          <p className="text-white/50 text-[12px]">© 2024 HAO — онлайн школа китайского языка</p>
+          <p className="text-white/50 text-[12px]">© {new Date().getFullYear()} HAO — онлайн школа китайского языка</p>
         </div>
       </div>
     </footer>

@@ -71,7 +71,7 @@ export default function Programs() {
           <div className="bg-[#FFE9D2] rounded-2xl overflow-hidden flex flex-col">
             <div className="flex-1 relative min-h-[280px]">
               <Image
-                src="/images/peng-jin-photo.jpg"
+                src="/images/peng-jin-photo.webp"
                 alt="Пэн Цзин"
                 fill
                 className="object-cover object-top"
