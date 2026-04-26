@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import Programs from "./components/Programs";
@@ -9,21 +12,27 @@ import FAQ from "./components/FAQ";
 import Footer from "./components/Footer";
 import HowItWorks from "./components/HowItWorks";
 import WhyUs from "./components/WhyUs";
+import LeadModal from "./components/LeadModal";
 
 export default function Home() {
+  const [modalOpen, setModalOpen] = useState(false);
+
   return (
-    <main>
+    <>
       <Header />
-      <Hero />
-      <Programs />
-      <Teachers />
-      <Journey />
-      <Reviews />
-      <Pricing />
-      <FAQ />
-      <HowItWorks />
-      <WhyUs />
+      <main>
+        <Hero />
+        <Programs />
+        <Teachers />
+        <Journey />
+        <Reviews />
+        <Pricing />
+        <FAQ />
+        <HowItWorks />
+        <WhyUs />
+      </main>
       <Footer />
-    </main>
+      <LeadModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
+    </>
   );
 }
