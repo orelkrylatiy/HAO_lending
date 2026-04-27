@@ -55,13 +55,13 @@ export default function Teachers() {
 
         <div className="max-w-2xl mx-auto">
           {/* Carousel track */}
-          <div className="overflow-hidden rounded-2xl">
+          <div className="overflow-hidden rounded-2xl w-full">
             <div
               className="flex transition-transform duration-300 ease-in-out"
               style={{ transform: `translateX(-${current * 100}%)` }}
             >
               {teachers.map((t) => (
-                <div key={t.name} className="w-full flex-shrink-0">
+                <div key={t.name} className="flex-shrink-0 w-full min-w-full">
                   <div className="bg-white shadow-sm border border-[#f0e8e0] flex flex-col md:flex-row overflow-hidden min-h-[220px]">
                     {/* Photo */}
                     <div className="md:w-52 flex-shrink-0">
