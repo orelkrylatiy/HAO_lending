@@ -44,7 +44,7 @@ export default function Reviews() {
 
         <div className="max-w-2xl mx-auto">
           {/* Card */}
-          <div className="bg-white rounded-2xl shadow-sm border border-[#f0e8e0] p-7 md:p-9 min-h-[220px] flex flex-col justify-between">
+          <div className="bg-white rounded-2xl shadow-sm border border-[#f0e8e0] p-7 md:p-9 min-h-[260px] flex flex-col justify-between">
             <p className="text-[#3d2b1f] text-[15px] md:text-[16px] leading-relaxed mb-6">
               &ldquo;{r.text}&rdquo;
             </p>
