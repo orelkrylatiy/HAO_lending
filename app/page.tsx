@@ -10,8 +10,6 @@ import Reviews from "./components/Reviews";
 import Pricing from "./components/Pricing";
 import FAQ from "./components/FAQ";
 import Footer from "./components/Footer";
-import HowItWorks from "./components/HowItWorks";
-import WhyUs from "./components/WhyUs";
 import LeadModal from "./components/LeadModal";
 
 export default function Home() {
@@ -28,8 +26,6 @@ export default function Home() {
         <Reviews />
         <Pricing onSignup={() => setModalOpen(true)} />
         <FAQ />
-        <HowItWorks />
-        <WhyUs />
       </main>
       <Footer />
       <LeadModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
