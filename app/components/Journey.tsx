@@ -54,7 +54,7 @@ export default function Journey() {
             ))}
           </div>
 
-          <div className="flex-1 grid grid-cols-2 gap-4">
+          <div className="flex-1 grid grid-cols-2 gap-4 w-full">
             <div className="col-span-2 rounded-2xl overflow-hidden relative h-56 md:h-72 bg-[#FFE9D2]">
               <Image
                 src="/images/journey-1.png"

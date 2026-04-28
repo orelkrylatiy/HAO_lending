@@ -1,26 +1,31 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 
 const reviews = [
   {
     name: "Мария",
     role: "Новичок",
+    photo: "/images/review-maria.jpg",
     text: "Никогда раньше не учила китайский и думала, что это слишком сложно. Но с этой школой всё оказалось реально! Уроки простые, логичные, много практики. Преподаватели терпеливые, всегда отвечают на вопросы и поддерживают. Уже через месяц могу составлять простые предложения и понимать базовые фразы.",
   },
   {
     name: "Алексей",
     role: "Деловой китайский",
+    photo: "/images/review-alexey.jpg",
     text: "Нужен был деловой китайский для работы с партнёрами. Программа полностью под мои задачи — за 4 месяца смог провести первые переговоры на китайском. Преподаватель профессионал, занятия в удобное для меня время.",
   },
   {
     name: "Екатерина",
     role: "Путешествия",
+    photo: "/images/review-kate.jpg",
     text: "Готовилась к поездке в Китай и хотела хотя бы базовый разговорный уровень. Уже после 6 уроков могла общаться в магазинах и кафе. Преподаватель из Китая — это огромный плюс, сразу слышишь живой язык!",
   },
   {
     name: "Дмитрий",
     role: "Подготовка к HSK",
+    photo: "/images/review-dmitry.jpg",
     text: "Готовился к HSK 3 с нуля за 3 месяца по авторскому курсу. Сдал с первого раза! Еженедельные пробные тесты очень помогли привыкнуть к формату экзамена. Рекомендую всем, кто хочет быстрый результат.",
   },
 ];
@@ -44,18 +49,18 @@ export default function Reviews() {
 
         <div className="max-w-2xl mx-auto">
           {/* Card — navigation inside to prevent layout jump */}
-          <div className="bg-white rounded-2xl shadow-sm border border-[#f0e8e0] p-7 md:p-9 flex flex-col gap-5">
-            {/* Text area — min-h keeps card stable between short/long reviews */}
-            <p className="text-[#3d2b1f] text-[15px] md:text-[16px] leading-relaxed min-h-[120px]">
+          <div className="bg-white rounded-2xl shadow-sm border border-[#f0e8e0] p-7 md:p-9 flex flex-col h-[300px]">
+            {/* flex-1 + overflow-hidden keeps text in fixed space, footer pinned to bottom */}
+            <p className="text-[#3d2b1f] text-[15px] md:text-[16px] leading-relaxed flex-1 overflow-hidden">
               &ldquo;{r.text}&rdquo;
             </p>
 
             {/* Footer row: author left, nav right — always at bottom of card */}
-            <div className="flex items-center justify-between pt-5 border-t border-[#f0e8e0]">
+            <div className="flex items-center justify-between pt-5 border-t border-[#f0e8e0] flex-shrink-0 mt-5">
               {/* Author */}
               <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-full bg-[#FFE9D2] flex items-center justify-center text-[#F86704] font-black text-[14px] flex-shrink-0">
-                  {r.name[0]}
+                <div className="w-9 h-9 rounded-full overflow-hidden flex-shrink-0 bg-[#FFE9D2]">
+                  <Image src={r.photo} alt={r.name} width={36} height={36} className="object-cover w-full h-full" />
                 </div>
                 <div>
                   <div className="font-bold text-[#121212] text-[14px]">{r.name}</div>
