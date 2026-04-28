@@ -1,5 +1,41 @@
 import { NextRequest, NextResponse } from "next/server";
 
+// Поддерживает несколько chat_id через запятую: TELEGRAM_CHAT_IDS=111,222,333
+function getTelegramChatIds(): string[] {
+  const raw = process.env.TELEGRAM_CHAT_IDS ?? process.env.TELEGRAM_CHAT_ID ?? "";
+  return raw
+    .split(",")
+    .map((id) => id.trim())
+    .filter(Boolean);
+}
+
+async function sendTelegram(text: string): Promise<void> {
+  const token = process.env.TELEGRAM_BOT_TOKEN;
+  const chatIds = getTelegramChatIds();
+
+  if (!token || chatIds.length === 0) return;
+
+  await Promise.allSettled(
+    chatIds.map((chatId) =>
+      fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ chat_id: chatId, text, parse_mode: "HTML" }),
+      })
+    )
+  );
+}
+
+async function sendGoogleSheets(payload: Record<string, string>): Promise<void> {
+  const url = process.env.GOOGLE_SCRIPT_URL;
+  if (!url) return;
+  await fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+}
+
 export async function POST(req: NextRequest) {
   const { name, phone, email } = await req.json();
 
@@ -11,35 +47,19 @@ export async function POST(req: NextRequest) {
   }
 
   const date = new Date().toLocaleString("ru-RU", { timeZone: "Europe/Moscow" });
-  const text = `🆕 Новая заявка\n👤 Имя: ${name}\n📞 Телефон: ${phone}\n📧 Email: ${email || "—"}\n🕐 ${date}`;
 
-  const results = await Promise.allSettled([
-    // Telegram
-    process.env.TELEGRAM_BOT_TOKEN && process.env.TELEGRAM_CHAT_ID
-      ? fetch(`https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ chat_id: process.env.TELEGRAM_CHAT_ID, text }),
-        })
-      : Promise.resolve(null),
+  const tgText = [
+    `🆕 <b>Новая заявка с лендинга</b>`,
+    `👤 Имя: <b>${name}</b>`,
+    `📞 Телефон: <b>${phone}</b>`,
+    `📧 Email: ${email || "—"}`,
+    `🕐 ${date}`,
+  ].join("\n");
 
-    // Google Sheets
-    process.env.GOOGLE_SCRIPT_URL
-      ? fetch(process.env.GOOGLE_SCRIPT_URL, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ date, name, phone, email }),
-        })
-      : Promise.resolve(null),
+  await Promise.allSettled([
+    sendTelegram(tgText),
+    sendGoogleSheets({ date, name, phone, email: email || "" }),
   ]);
-
-  const allFailed = results.every(
-    (r) => r.status === "rejected" || (r.status === "fulfilled" && r.value !== null && !(r.value as Response).ok)
-  );
-
-  if (allFailed) {
-    return NextResponse.json({ error: "Не удалось отправить заявку" }, { status: 500 });
-  }
 
   return NextResponse.json({ ok: true });
 }

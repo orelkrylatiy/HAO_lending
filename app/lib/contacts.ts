@@ -1,8 +1,10 @@
-// Заполни реальными данными из haoznaet.ru
+// Контакты берутся из .env.local
+// Редактируй там — сюда ничего не вписывай вручную
+
 export const CONTACTS = {
-  phone: "+7 (999) 111-22-33",
-  phoneRaw: "+79991112233",
-  email: "example@mail.ru",
-  telegram: "https://t.me/haoznaet",
-  whatsapp: "https://wa.me/79991112233",
-} as const;
+  phone:    process.env.NEXT_PUBLIC_CONTACT_PHONE    ?? "",
+  phoneRaw: process.env.NEXT_PUBLIC_CONTACT_PHONE_RAW ?? "",
+  email:    process.env.NEXT_PUBLIC_CONTACT_EMAIL    ?? "",
+  telegram: process.env.NEXT_PUBLIC_CONTACT_TELEGRAM ?? "#",
+  whatsapp: process.env.NEXT_PUBLIC_CONTACT_WHATSAPP ?? "#",
+};
