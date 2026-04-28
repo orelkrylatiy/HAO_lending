@@ -50,7 +50,7 @@ export default function Hero() {
             </div>
 
             {/* Right: illustration */}
-            <div className="relative flex-1 flex items-end justify-center overflow-hidden min-h-[240px] md:min-h-[480px] px-4 md:px-0 pt-18 md:pt-0">
+            <div className="relative flex-1 flex items-end justify-center overflow-hidden min-h-[240px] md:min-h-[480px] px-4 md:px-0 pt-[72px] md:pt-0">
               {/* Benefit icon cards — top right corner of hero */}
               <div className="absolute top-5 right-4 md:top-8 md:right-8 flex gap-3 z-10">
                 <div className="flex flex-col items-center gap-1">
