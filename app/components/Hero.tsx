@@ -50,30 +50,29 @@ export default function Hero() {
             </div>
 
             {/* Right: illustration */}
-            <div className="relative flex-1 flex items-end justify-center overflow-hidden min-h-[240px] md:min-h-[480px]">
+            <div className="relative flex-1 flex items-end justify-center overflow-hidden min-h-[240px] md:min-h-[480px] px-4 md:px-0 pt-18 md:pt-0">
               {/* Benefit icon cards — top right corner of hero */}
               <div className="absolute top-5 right-4 md:top-8 md:right-8 flex gap-3 z-10">
                 <div className="flex flex-col items-center gap-1">
-                  <Image src="/images/icon-education.svg" alt="обучение за рубежом" width={52} height={49} unoptimized />
+                  <Image src="/images/icon-education.svg" alt="обучение за рубежом" width={52} height={49} className="w-[42px] md:w-[52px] h-auto" unoptimized />
                   <span className="text-[9px] md:text-[10px] font-semibold text-[#3d2b1f] text-center leading-tight">обучение<br/>за рубежом</span>
                 </div>
                 <div className="flex flex-col items-center gap-1">
-                  <Image src="/images/icon-education1.svg" alt="высокий доход" width={52} height={49} unoptimized />
+                  <Image src="/images/icon-education1.svg" alt="высокий доход" width={52} height={49} className="w-[42px] md:w-[52px] h-auto" unoptimized />
                   <span className="text-[9px] md:text-[10px] font-semibold text-[#3d2b1f] text-center leading-tight">высокий<br/>доход</span>
                 </div>
                 <div className="flex flex-col items-center gap-1">
-                  <Image src="/images/icon-bag.svg" alt="карьерный рост" width={52} height={49} unoptimized />
+                  <Image src="/images/icon-bag.svg" alt="карьерный рост" width={52} height={49} className="w-[42px] md:w-[52px] h-auto" unoptimized />
                   <span className="text-[9px] md:text-[10px] font-semibold text-[#3d2b1f] text-center leading-tight">карьерный<br/>рост</span>
                 </div>
               </div>
 
-              {/* Illustration */}
               <Image
                 src="/images/hero-illustration.webp"
                 alt="Студенты изучают китайский"
                 width={580}
                 height={420}
-                className="w-full h-full object-contain object-bottom"
+                className="block w-full max-w-[300px] sm:max-w-[380px] md:max-w-[580px] h-auto object-contain object-bottom"
                 priority
                 unoptimized
               />
