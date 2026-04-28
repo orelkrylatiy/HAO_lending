@@ -46,19 +46,25 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Введите корректный номер телефона" }, { status: 400 });
   }
 
-  const date = new Date().toLocaleString("ru-RU", { timeZone: "Europe/Moscow" });
+  // Время МСК (UTC+3) — считаем вручную, чтобы не зависеть от таймзоны сервера
+  const now = new Date();
+  const msk = new Date(now.getTime() + 3 * 60 * 60 * 1000);
+  const p = (n: number) => String(n).padStart(2, "0");
+  const date = `${p(msk.getUTCDate())}.${p(msk.getUTCMonth() + 1)}.${msk.getUTCFullYear()} ${p(msk.getUTCHours())}:${p(msk.getUTCMinutes())} МСК`;
 
   const tgText = [
-    `🆕 <b>Новая заявка с лендинга</b>`,
-    `👤 Имя: <b>${name}</b>`,
-    `📞 Телефон: <b>${phone}</b>`,
+    "🆕 Новая заявка с лендинга",
+    `👤 Имя: ${name}`,
+    `📞 Телефон: ${phone}`,
     `📧 Email: ${email || "—"}`,
     `🕐 ${date}`,
   ].join("\n");
 
   await Promise.allSettled([
     sendTelegram(tgText),
-    sendGoogleSheets({ date, name, phone, email: email || "" }),
+    // Пробел перед телефоном — защита от #ERROR! в Google Sheets:
+    // ячейки, начинающиеся с «+», интерпретируются как формула
+    sendGoogleSheets({ date, name, phone: " " + phone, email: email || "" }),
   ]);
 
   return NextResponse.json({ ok: true });
