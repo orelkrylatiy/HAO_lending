@@ -92,7 +92,18 @@ function doPost(e) {
   try {
     const data = JSON.parse(e.postData.contents);
     const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-    sheet.appendRow([data.date, data.name, data.phone, data.email]);
+    const lastRow = sheet.getLastRow() + 1;
+
+    // Сначала форматируем столбец телефона как текст,
+    // иначе Sheets воспринимает +7... как формулу и показывает #ERROR!
+    sheet.getRange(lastRow, 3).setNumberFormat('@STRING@');
+    sheet.getRange(lastRow, 1, 1, 4).setValues([[
+      data.date,
+      data.name,
+      data.phone,
+      data.email
+    ]]);
+
     return ContentService
       .createTextOutput(JSON.stringify({ ok: true }))
       .setMimeType(ContentService.MimeType.JSON);
