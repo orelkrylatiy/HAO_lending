@@ -10,10 +10,10 @@ export default function Hero() {
             {/* Left: text content */}
             <div className="flex-1 px-7 pt-10 pb-8 md:px-12 md:pt-12 md:pb-12 flex flex-col justify-between min-h-[380px] md:min-h-[480px]">
               <div className="flex-1">
-                <h1 className="text-[38px] sm:text-[52px] md:text-[64px] font-black text-[#121212] leading-[1.05] mb-5">
+                <h1 className="text-[44px] sm:text-[60px] md:text-[76px] font-black text-[#121212] leading-[1.05] mb-5">
                   Китайский<br />язык будущего
                 </h1>
-                <p className="text-[#F86704] text-[17px] md:text-[21px] font-bold leading-snug mb-3">
+                <p className="text-[#F86704] text-[19px] md:text-[24px] font-bold leading-snug mb-3">
                   Китайский онлайн<br />
                   с преподавателями из Китая для<br />
                   школьников и взрослых.
@@ -53,17 +53,17 @@ export default function Hero() {
             <div className="relative flex-1 flex items-end justify-center overflow-hidden min-h-[240px] md:min-h-[480px] px-4 md:px-0 pt-[72px] md:pt-0">
               {/* Benefit icon cards — top right corner of hero */}
               <div className="absolute top-5 right-4 md:top-8 md:right-8 flex gap-3 z-10">
-                <div className="flex flex-col items-center gap-1">
-                  <Image src="/images/icon-education.svg" alt="обучение за рубежом" width={52} height={49} className="w-[42px] md:w-[52px] h-auto" unoptimized />
-                  <span className="text-[9px] md:text-[10px] font-semibold text-[#3d2b1f] text-center leading-tight">обучение<br/>за рубежом</span>
+                <div className="flex flex-col items-center gap-1.5">
+                  <Image src="/images/icon-education.svg" alt="обучение за рубежом" width={64} height={60} className="w-[52px] md:w-[64px] h-auto" unoptimized />
+                  <span className="text-[10px] md:text-[11px] font-semibold text-[#3d2b1f] text-center leading-tight">обучение<br/>за рубежом</span>
                 </div>
-                <div className="flex flex-col items-center gap-1">
-                  <Image src="/images/icon-education1.svg" alt="высокий доход" width={52} height={49} className="w-[42px] md:w-[52px] h-auto" unoptimized />
-                  <span className="text-[9px] md:text-[10px] font-semibold text-[#3d2b1f] text-center leading-tight">высокий<br/>доход</span>
+                <div className="flex flex-col items-center gap-1.5">
+                  <Image src="/images/icon-education1.svg" alt="высокий доход" width={64} height={60} className="w-[52px] md:w-[64px] h-auto" unoptimized />
+                  <span className="text-[10px] md:text-[11px] font-semibold text-[#3d2b1f] text-center leading-tight">высокий<br/>доход</span>
                 </div>
-                <div className="flex flex-col items-center gap-1">
-                  <Image src="/images/icon-bag.svg" alt="карьерный рост" width={52} height={49} className="w-[42px] md:w-[52px] h-auto" unoptimized />
-                  <span className="text-[9px] md:text-[10px] font-semibold text-[#3d2b1f] text-center leading-tight">карьерный<br/>рост</span>
+                <div className="flex flex-col items-center gap-1.5">
+                  <Image src="/images/icon-bag.svg" alt="карьерный рост" width={64} height={60} className="w-[52px] md:w-[64px] h-auto" unoptimized />
+                  <span className="text-[10px] md:text-[11px] font-semibold text-[#3d2b1f] text-center leading-tight">карьерный<br/>рост</span>
                 </div>
               </div>
 

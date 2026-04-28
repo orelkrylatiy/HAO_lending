@@ -25,7 +25,7 @@ export default function Programs() {
         <div className="hidden md:grid grid-cols-[280px_1fr_260px] gap-5">
           <div className="bg-[#FFE9D2] rounded-2xl overflow-hidden flex flex-col">
             <div className="flex-1 relative min-h-[280px]">
-              <Image src="/images/peng-jin-photo.webp" alt="Пэн Цзин" fill className="object-cover object-top" sizes="280px" />
+              <Image src="/images/teacher-peng-jin.jpg" alt="Пэн Цзин" fill className="object-cover object-top" sizes="280px" unoptimized />
             </div>
             <div className="p-5">
               <div className="font-black text-[#121212] text-[18px]">Пэн Цзин</div>
@@ -61,13 +61,13 @@ export default function Programs() {
             </div>
           </div>
 
-          <div className="flex flex-col gap-2">
+          <div className="bg-[#f5dfc0] rounded-2xl p-3 flex flex-col gap-2">
             {PROGRAMS.map((p, i) => (
               <button
                 key={p.id}
                 onClick={() => setActive(i)}
                 className={`w-full text-left px-4 py-3.5 rounded-xl font-semibold text-[14px] transition-all ${
-                  i === active ? "bg-[#F86704] text-white shadow-sm" : "bg-[#FFE9D2] text-[#121212] hover:bg-[#ffd9b3]"
+                  i === active ? "bg-[#F86704] text-white shadow-sm" : "bg-white/60 text-[#121212] hover:bg-white/80"
                 }`}
               >
                 <div className="font-bold">{p.title}</div>

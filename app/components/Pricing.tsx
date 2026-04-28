@@ -28,17 +28,45 @@ export default function Pricing({ onSignup }: { onSignup?: () => void }) {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
-          {/* Kids */}
+          {/* Kids — orange */}
+          <div className="bg-[#F86704] rounded-2xl p-6 md:p-8 shadow-lg flex flex-col">
+            <div className="mb-5">
+              <span className="inline-block px-3 py-1 rounded-full bg-white/20 text-white text-xs font-semibold mb-3">
+                Для детей
+              </span>
+              <div className="text-3xl font-bold text-white mb-1">
+                от <span className="font-black">980 ₽</span>
+              </div>
+              <div className="text-white/80 text-sm">за урок</div>
+            </div>
+            <ul className="flex flex-col gap-3 mb-8 flex-1">
+              {KIDS_FEATURES.map((f) => (
+                <li key={f} className="flex items-start gap-2.5 text-sm text-white">
+                  <CheckIcon variant="dark" />
+                  {f}
+                </li>
+              ))}
+            </ul>
+            <button
+              type="button"
+              onClick={onSignup}
+              className="w-full py-4 rounded-full bg-white text-[#F86704] font-bold text-[16px] text-center hover:bg-[#fff5ee] transition-colors"
+            >
+              Записаться
+            </button>
+          </div>
+
+          {/* Adults — white */}
           <div className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-[#f0e8e0] flex flex-col">
             <div className="mb-5">
-              <span className="badge-light mb-3">Для детей</span>
+              <span className="badge-light mb-3">Для взрослых</span>
               <div className="text-3xl font-bold text-[#121212] mt-3 mb-1">
-                от <span className="text-[#F86704]">980 ₽</span>
+                от <span className="text-[#F86704]">1 250 ₽</span>
               </div>
               <div className="text-[#6b5c4e] text-sm">за урок</div>
             </div>
             <ul className="flex flex-col gap-3 mb-8 flex-1">
-              {KIDS_FEATURES.map((f) => (
+              {ADULT_FEATURES.map((f) => (
                 <li key={f} className="flex items-start gap-2.5 text-sm text-[#3d2b1f]">
                   <CheckIcon variant="light" />
                   {f}
@@ -49,34 +77,6 @@ export default function Pricing({ onSignup }: { onSignup?: () => void }) {
               type="button"
               onClick={onSignup}
               className="w-full py-3 rounded-full border-2 border-[#F86704] text-[#F86704] font-semibold text-center hover:bg-[#FFE9D2] transition-colors"
-            >
-              Записаться
-            </button>
-          </div>
-
-          {/* Adults */}
-          <div className="bg-[#F86704] rounded-2xl p-6 md:p-8 shadow-lg flex flex-col">
-            <div className="mb-5">
-              <span className="inline-block px-3 py-1 rounded-full bg-white/20 text-white text-xs font-semibold mb-3">
-                Для взрослых
-              </span>
-              <div className="text-3xl font-bold text-white mb-1">
-                от <span className="font-black">1 250 ₽</span>
-              </div>
-              <div className="text-white/80 text-sm">за урок</div>
-            </div>
-            <ul className="flex flex-col gap-3 mb-8 flex-1">
-              {ADULT_FEATURES.map((f) => (
-                <li key={f} className="flex items-start gap-2.5 text-sm text-white">
-                  <CheckIcon variant="dark" />
-                  {f}
-                </li>
-              ))}
-            </ul>
-            <button
-              type="button"
-              onClick={onSignup}
-              className="w-full py-3 rounded-full bg-white text-[#F86704] font-semibold text-center hover:bg-[#fff5ee] transition-colors"
             >
               Записаться
             </button>

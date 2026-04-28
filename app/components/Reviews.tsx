@@ -3,15 +3,16 @@
 import { useState } from "react";
 import Image from "next/image";
 import { REVIEWS } from "@/app/lib/data";
-import { CarouselNav } from "@/app/components/ui/CarouselNav";
+
+const VISIBLE = 3;
 
 export default function Reviews() {
-  const [current, setCurrent] = useState(0);
+  const [start, setStart] = useState(0);
 
-  const prev = () => setCurrent((c) => (c - 1 + REVIEWS.length) % REVIEWS.length);
-  const next = () => setCurrent((c) => (c + 1) % REVIEWS.length);
+  const prev = () => setStart((s) => (s - 1 + REVIEWS.length) % REVIEWS.length);
+  const next = () => setStart((s) => (s + 1) % REVIEWS.length);
 
-  const r = REVIEWS[current];
+  const visible = Array.from({ length: VISIBLE }, (_, i) => REVIEWS[(start + i) % REVIEWS.length]);
 
   return (
     <section id="reviews" className="bg-[#fff8f3] py-14 md:py-20">
@@ -22,33 +23,67 @@ export default function Reviews() {
           </h2>
         </div>
 
-        <div className="max-w-2xl mx-auto">
-          <div className="bg-white rounded-2xl shadow-sm border border-[#f0e8e0] p-7 md:p-9 flex flex-col h-[300px]">
-            <p className="text-[#3d2b1f] text-[15px] md:text-[16px] leading-relaxed flex-1 overflow-hidden">
-              &ldquo;{r.text}&rdquo;
-            </p>
-
-            <div className="flex items-center justify-between pt-5 border-t border-[#f0e8e0] flex-shrink-0 mt-5">
-              <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-full overflow-hidden flex-shrink-0 bg-[#FFE9D2]">
-                  <Image src={r.photo} alt={r.name} width={36} height={36} className="object-cover w-full h-full" />
+        {/* Desktop: 3 cards */}
+        <div className="hidden md:grid grid-cols-3 gap-5">
+          {visible.map((r, i) => (
+            <div key={r.name + i} className="bg-white rounded-2xl shadow-sm border border-[#f0e8e0] p-6 flex flex-col">
+              <p className="text-[#3d2b1f] text-[14px] leading-relaxed flex-1 mb-5">
+                &ldquo;{r.text}&rdquo;
+              </p>
+              <div className="flex items-center gap-3 pt-4 border-t border-[#f0e8e0]">
+                <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0 bg-[#FFE9D2]">
+                  <Image src={r.photo} alt={r.name} width={40} height={40} className="object-cover w-full h-full" unoptimized />
                 </div>
                 <div>
                   <div className="font-bold text-[#121212] text-[14px]">{r.name}</div>
                   <div className="text-[12px] text-[#6b5c4e]">{r.role}</div>
                 </div>
               </div>
-
-              <CarouselNav
-                onPrev={prev}
-                onNext={next}
-                total={REVIEWS.length}
-                current={current}
-                onSelect={setCurrent}
-                dotLabel="Отзыв"
-              />
             </div>
+          ))}
+        </div>
+
+        {/* Mobile: single card */}
+        <div className="md:hidden">
+          {(() => {
+            const r = REVIEWS[start];
+            return (
+              <div className="bg-white rounded-2xl shadow-sm border border-[#f0e8e0] p-6 flex flex-col">
+                <p className="text-[#3d2b1f] text-[14px] leading-relaxed flex-1 mb-5">
+                  &ldquo;{r.text}&rdquo;
+                </p>
+                <div className="flex items-center gap-3 pt-4 border-t border-[#f0e8e0]">
+                  <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0 bg-[#FFE9D2]">
+                    <Image src={r.photo} alt={r.name} width={40} height={40} className="object-cover w-full h-full" unoptimized />
+                  </div>
+                  <div>
+                    <div className="font-bold text-[#121212] text-[14px]">{r.name}</div>
+                    <div className="text-[12px] text-[#6b5c4e]">{r.role}</div>
+                  </div>
+                </div>
+              </div>
+            );
+          })()}
+        </div>
+
+        {/* Navigation */}
+        <div className="flex items-center justify-center gap-4 mt-6">
+          <button onClick={prev} aria-label="Предыдущий" className="carousel-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+          </button>
+          <div className="flex gap-2">
+            {REVIEWS.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setStart(i)}
+                aria-label={`Отзыв ${i + 1}`}
+                className={`w-2 h-2 rounded-full transition-all ${i === start ? "bg-[#F86704] w-5" : "bg-[#f0e8e0]"}`}
+              />
+            ))}
           </div>
+          <button onClick={next} aria-label="Следующий" className="carousel-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+          </button>
         </div>
       </div>
     </section>
