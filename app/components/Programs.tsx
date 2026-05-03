@@ -93,9 +93,15 @@ export default function Programs() {
         </div>
 
         <div className="mt-8">
-          <a href="#pricing" className="btn-primary flex w-full text-[17px] py-5 rounded-2xl gap-3">
+          <button 
+            type="button"
+            onClick={() => {
+              document.getElementById("pricing")?.scrollIntoView({ behavior: "smooth" });
+            }}
+            className="btn-primary flex w-full text-[17px] py-5 rounded-2xl gap-3 justify-center"
+          >
             Записаться на бесплатный урок →
-          </a>
+          </button>
         </div>
       </div>
     </section>

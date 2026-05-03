@@ -30,7 +30,7 @@ export default function Header() {
         {/* CTA button */}
         <a
           href="#pricing"
-          className="hidden lg:flex items-center gap-2 px-6 py-2.5 rounded-full border-2 border-[#121212] text-[#121212] text-[14px] font-semibold hover:bg-[#121212] hover:text-white transition-all"
+          className="hidden lg:flex items-center gap-2 px-6 py-2.5 rounded-full border-2 border-[#121212] text-[#121212] text-[14px] font-semibold hover:bg-[#121212] hover:text-white transition-all cursor-pointer"
         >
           Записаться на занятие
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
@@ -38,7 +38,8 @@ export default function Header() {
 
         {/* Mobile burger */}
         <button
-          className="lg:hidden flex flex-col gap-1.5 p-2"
+          type="button"
+          className="lg:hidden flex flex-col gap-1.5 p-2 cursor-pointer"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Меню"
         >
@@ -57,7 +58,7 @@ export default function Header() {
           <a href="#pricing" className="text-[#121212] font-semibold text-[15px]" onClick={() => setMenuOpen(false)}>Стоимость</a>
           <a
             href="#pricing"
-            className="mt-2 px-6 py-3 rounded-full border-2 border-[#121212] text-[#121212] font-semibold text-center hover:bg-[#121212] hover:text-white transition-all"
+            className="mt-2 px-6 py-3 rounded-full border-2 border-[#121212] text-[#121212] font-semibold text-center hover:bg-[#121212] hover:text-white transition-all cursor-pointer"
             onClick={() => setMenuOpen(false)}
           >
             Записаться на занятие →

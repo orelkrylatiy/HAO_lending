@@ -22,6 +22,25 @@ html {
   scroll-padding-top: 72px;
 }
 
+/* Ensure all interactive elements are clickable */
+button, a, [role="button"] {
+  pointer-events: auto !important;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+main {
+  pointer-events: auto;
+}
+
+section {
+  pointer-events: auto;
+}
+
+button, a, input, select, textarea {
+  pointer-events: auto !important;
+}
+
 .container-main {
   max-width: 1200px;
   margin-left: auto;
@@ -47,6 +66,10 @@ html {
   font-weight: 700;
   border-radius: 9999px;
   transition: background-color 0.15s;
+  cursor: pointer;
+  pointer-events: auto;
+  border: none;
+  outline: none;
 }
 .btn-primary:hover { background-color: var(--color-primary-hover); }
 
@@ -59,6 +82,10 @@ html {
   font-weight: 600;
   border-radius: 9999px;
   transition: background-color 0.15s, color 0.15s;
+  cursor: pointer;
+  pointer-events: auto;
+  outline: none;
+  background: transparent;
 }
 .btn-outline:hover { background-color: var(--color-text); color: white; }
 
@@ -73,6 +100,8 @@ html {
 }
 
 .carousel-btn {
+  position: relative;
+  z-index: 1;
   width: 44px;
   height: 44px;
   min-width: 44px;
@@ -89,6 +118,9 @@ html {
   flex-shrink: 0;
   appearance: none;
   -webkit-appearance: none;
+  pointer-events: auto;
+  touch-action: manipulation;
+  user-select: none;
   transition: transform 0.2s ease, opacity 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
   box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
@@ -100,6 +132,8 @@ html {
   box-shadow: 0 0 0 3px rgba(248, 103, 4, 0.28);
 }
 .carousel-dot {
+  position: relative;
+  z-index: 1;
   height: 8px;
   border: 0;
   outline: none;
@@ -107,6 +141,9 @@ html {
   border-radius: 9999px;
   appearance: none;
   -webkit-appearance: none;
+  pointer-events: auto;
+  touch-action: manipulation;
+  user-select: none;
   transition: all 0.2s ease;
 }
 .carousel-dot-active {

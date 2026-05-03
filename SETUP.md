@@ -150,10 +150,11 @@ GOOGLE_SCRIPT_URL=https://script.google.com/macros/s/ВАШ_ID/exec
 
 | Файл | Студент |
 |---|---|
-| `review-maria.jpg` | Мария |
-| `review-alexey.jpg` | Алексей |
-| `review-kate.jpg` | Екатерина |
-| `review-dmitry.jpg` | Дмитрий |
+| `teacher-peng-jin.jpg` | Анна Гернер / Александра |
+| `teacher-dai-wei.jpg` | Никита |
+| `teacher-siqin.jpg` | Елена Форонова |
+| `teacher-alua.jpg` | Тимур |
+| `teacher-kai-nin.jpg` | Анастасия |
 
 Рекомендуемый размер: **200×200px**, формат JPG.
 

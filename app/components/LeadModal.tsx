@@ -53,6 +53,7 @@ export default function LeadModal({ isOpen, onClose, title = "Записатьс
         onClick={(e) => e.stopPropagation()}
       >
         <button
+          type="button"
           onClick={onClose}
           className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full hover:bg-black/10 transition-colors"
         >
@@ -75,6 +76,7 @@ export default function LeadModal({ isOpen, onClose, title = "Записатьс
             <p className="text-[#121212] font-bold text-[18px]">Заявка отправлена!</p>
             <p className="text-[#6b5c4e] text-[14px]">Мы свяжемся с вами в ближайшее время.</p>
             <button
+              type="button"
               onClick={onClose}
               className="mt-2 w-full bg-[#F86704] text-white font-bold text-[16px] py-4 rounded-xl hover:bg-[#e55a1f] transition-colors"
             >

@@ -1,3 +1,5 @@
+"use client";
+
 import { KIDS_FEATURES, ADULT_FEATURES } from "@/app/lib/data";
 
 function CheckIcon({ variant = "light" }: { variant?: "light" | "dark" }) {
@@ -15,8 +17,12 @@ function CheckIcon({ variant = "light" }: { variant?: "light" | "dark" }) {
 }
 
 export default function Pricing({ onSignup }: { onSignup?: () => void }) {
+  const handleSignup = () => {
+    onSignup?.();
+  };
+
   return (
-    <section id="pricing" className="bg-[#fcfbf7] py-16 md:py-20">
+    <section id="pricing" className="relative isolate bg-[#fcfbf7] py-16 md:py-20">
       <div className="container-main">
         <div className="text-center mb-10 md:mb-14">
           <h2 className="text-[26px] sm:text-[32px] md:text-[40px] font-black text-[#121212] mb-3">
@@ -29,7 +35,7 @@ export default function Pricing({ onSignup }: { onSignup?: () => void }) {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
           {/* Kids — orange */}
-          <div className="bg-[#F86704] rounded-2xl p-6 md:p-8 shadow-lg flex flex-col">
+          <div className="relative z-10 bg-[#F86704] rounded-2xl p-6 md:p-8 shadow-lg flex flex-col">
             <div className="mb-5">
               <span className="inline-block px-3 py-1 rounded-full bg-white/20 text-white text-xs font-semibold mb-3">
                 Для детей
@@ -49,7 +55,7 @@ export default function Pricing({ onSignup }: { onSignup?: () => void }) {
             </ul>
             <button
               type="button"
-              onClick={onSignup}
+              onClick={handleSignup}
               className="w-full py-4 rounded-full bg-white text-[#F86704] font-bold text-[16px] text-center hover:bg-[#fff5ee] transition-colors"
             >
               Записаться
@@ -57,7 +63,7 @@ export default function Pricing({ onSignup }: { onSignup?: () => void }) {
           </div>
 
           {/* Adults — white */}
-          <div className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-[#f0e8e0] flex flex-col">
+          <div className="relative z-10 bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-[#f0e8e0] flex flex-col">
             <div className="mb-5">
               <span className="badge-light mb-3">Для взрослых</span>
               <div className="text-3xl font-bold text-[#121212] mt-3 mb-1">
@@ -75,7 +81,7 @@ export default function Pricing({ onSignup }: { onSignup?: () => void }) {
             </ul>
             <button
               type="button"
-              onClick={onSignup}
+              onClick={handleSignup}
               className="w-full py-3 rounded-full border-2 border-[#F86704] text-[#F86704] font-semibold text-center hover:bg-[#FFE9D2] transition-colors"
             >
               Записаться

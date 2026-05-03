@@ -1,6 +1,15 @@
+"use client";
+
 import Image from "next/image";
 
 export default function Hero() {
+  const handleScrollTo = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <section className="bg-[#fcfbf7] pt-[72px]">
       <div className="container-main py-6 md:py-10">
@@ -24,8 +33,9 @@ export default function Hero() {
               </div>
 
               <div className="flex flex-col gap-3 max-w-[420px]">
-                <a
-                  href="#pricing"
+                <button
+                  type="button"
+                  onClick={() => handleScrollTo("pricing")}
                   className="flex items-center justify-between gap-3 bg-[#F86704] text-white font-bold text-[15px] md:text-[17px] px-6 py-4 rounded-2xl hover:bg-[#e55a1f] transition-colors"
                 >
                   <span>Записаться на бесплатный урок</span>
@@ -34,9 +44,10 @@ export default function Hero() {
                       <path d="M7 17L17 7M17 7H7M17 7V17" stroke="white" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
                   </span>
-                </a>
-                <a
-                  href="#programs"
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleScrollTo("programs")}
                   className="flex items-center justify-between gap-3 bg-white/50 text-[#F86704] font-semibold text-[13px] md:text-[14px] px-6 py-3.5 rounded-2xl hover:bg-white/70 transition-colors"
                 >
                   <span>Консультация по поступлению в Китайский ВУЗ</span>
@@ -45,7 +56,7 @@ export default function Hero() {
                       <path d="M7 17L17 7M17 7H7M17 7V17" stroke="#F86704" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
                   </span>
-                </a>
+                </button>
               </div>
             </div>
 

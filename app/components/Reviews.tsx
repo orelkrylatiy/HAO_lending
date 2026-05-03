@@ -67,22 +67,26 @@ export default function Reviews() {
         </div>
 
         {/* Navigation */}
-        <div className="flex items-center justify-center gap-4 mt-6">
-          <button onClick={prev} aria-label="Предыдущий" className="carousel-btn">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+        <div className="relative z-10 flex items-center justify-center gap-4 mt-6 pointer-events-auto">
+          <button type="button" onClick={prev} aria-label="Предыдущий" className="carousel-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 18l-6-6 6-6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
           </button>
-          <div className="flex gap-2">
+          <div className="flex items-center gap-2">
             {REVIEWS.map((_, i) => (
               <button
                 key={i}
+                type="button"
                 onClick={() => setStart(i)}
                 aria-label={`Отзыв ${i + 1}`}
-                className={`w-2 h-2 rounded-full transition-all ${i === start ? "bg-[#F86704] w-5" : "bg-[#f0e8e0]"}`}
-              />
+                aria-pressed={i === start}
+                className="w-6 h-6 flex items-center justify-center"
+              >
+                <span className={`carousel-dot ${i === start ? "carousel-dot-active" : "carousel-dot-inactive"}`} />
+              </button>
             ))}
           </div>
-          <button onClick={next} aria-label="Следующий" className="carousel-btn">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+          <button type="button" onClick={next} aria-label="Следующий" className="carousel-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18l6-6-6-6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
           </button>
         </div>
       </div>
