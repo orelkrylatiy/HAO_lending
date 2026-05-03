@@ -67,7 +67,7 @@ export default function Reviews() {
         </div>
 
         {/* Navigation */}
-        <div className="relative z-10 flex items-center justify-center gap-4 mt-6 pointer-events-auto">
+        <div className="relative z-10 flex items-center justify-center gap-4 mt-6">
           <button type="button" onClick={prev} aria-label="Предыдущий" className="carousel-btn">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 18l-6-6 6-6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
           </button>
