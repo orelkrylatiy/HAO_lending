@@ -77,21 +77,23 @@ export default function Teachers() {
 
         {/* Navigation */}
         <div className="flex items-center justify-center gap-4 mt-6">
-          <button onClick={prev} aria-label="Предыдущий" className="carousel-btn">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+          <button type="button" onClick={prev} aria-label="Предыдущий" className="carousel-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 18l-6-6 6-6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
           </button>
-          <div className="flex gap-2">
+          <div className="flex items-center gap-2">
             {TEACHERS.map((_, i) => (
               <button
                 key={i}
+                type="button"
                 onClick={() => setStart(i)}
                 aria-label={`Преподаватель ${i + 1}`}
-                className={`w-2 h-2 rounded-full transition-all ${i === start ? "bg-[#F86704] w-5" : "bg-[#f0e8e0]"}`}
+                aria-pressed={i === start}
+                className={`carousel-dot ${i === start ? "carousel-dot-active" : "carousel-dot-inactive"}`}
               />
             ))}
           </div>
-          <button onClick={next} aria-label="Следующий" className="carousel-btn">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+          <button type="button" onClick={next} aria-label="Следующий" className="carousel-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18l6-6-6-6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
           </button>
         </div>
       </div>
