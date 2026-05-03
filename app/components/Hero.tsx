@@ -50,9 +50,9 @@ export default function Hero() {
             </div>
 
             {/* Right: illustration */}
-            <div className="relative flex-1 flex items-end justify-center overflow-hidden min-h-[240px] md:min-h-[480px] px-4 md:px-0 pt-[72px] md:pt-0">
+            <div className="relative flex-1 flex flex-col md:flex-row items-center md:items-end justify-end overflow-hidden min-h-[240px] md:min-h-[480px] px-4 md:px-0 pt-6 md:pt-0">
               {/* Benefit icon cards — top right corner of hero */}
-              <div className="absolute top-5 right-4 md:top-8 md:right-8 flex gap-3 z-10">
+              <div className="w-full flex justify-center md:absolute md:top-8 md:right-8 md:w-auto md:justify-end gap-3 z-10 mb-4 md:mb-0">
                 <div className="flex flex-col items-center gap-1.5">
                   <Image src="/images/icon-education.svg" alt="обучение за рубежом" width={64} height={60} className="w-[52px] md:w-[64px] h-auto" unoptimized />
                   <span className="text-[10px] md:text-[11px] font-semibold text-[#3d2b1f] text-center leading-tight">обучение<br/>за рубежом</span>
