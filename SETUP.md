@@ -195,7 +195,112 @@ export const TEACHERS = [
 
 ---
 
-## 5. Деплой на Vercel
+## 5. Запуск на VPS через systemd
+
+Если сайт запускается на VPS, не поднимай production-сервер как одноразовый фоновый процесс (`nohup`, ручной `next start`, закрытая SSH-сессия и т.п.).
+
+### Почему сайт может падать
+
+Если порт, например `3010`, больше не слушает, локальный `curl` не проходит, снаружи сайт тоже недоступен, процесса `next start` / `node` нет, а лог давно не обновлялся — значит процесс просто умер и его никто не поднял обратно.
+
+Проблема в таком случае не в вёрстке и не в Next.js, а в способе запуска.
+
+### Что использовать
+
+Для VPS лучше использовать `systemd + next start`.
+
+Почему `systemd`:
+
+- автозапуск после ребута сервера
+- автоматический restart при падении процесса
+- нормальный системный сервис
+- для одного Next-проекта проще и чище, чем PM2
+
+PM2 тоже допустим, но для этого проекта он не нужен как основной вариант. `systemd` решает задачу напрямую.
+
+### Готовые файлы
+
+В проекте уже есть готовые файлы:
+
+- `deploy/systemd/hao-lending.service` — шаблон systemd-сервиса
+- `deploy/systemd/install-service.sh` — установщик сервиса на VPS
+
+По умолчанию они рассчитаны на:
+
+- директорию проекта: `/var/www/HAO`
+- порт: `3010`
+- пользователя: `www-data`
+- сервис: `hao-lending`
+
+### Что делает сервис
+
+```ini
+[Unit]
+Description=HAO Lending Next.js app
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/var/www/HAO
+Environment=NODE_ENV=production
+Environment=PORT=3010
+ExecStart=/usr/bin/npm run start
+Restart=always
+RestartSec=5
+User=www-data
+Group=www-data
+KillSignal=SIGINT
+TimeoutStopSec=30
+
+[Install]
+WantedBy=multi-user.target
+```
+
+### Установка на VPS
+
+На сервере сначала подготовь проект:
+
+```bash
+npm install
+npm run build
+```
+
+Затем из корня проекта:
+
+```bash
+sudo ./deploy/systemd/install-service.sh
+```
+
+Если путь, порт или пользователь отличаются:
+
+```bash
+sudo APP_DIR=/var/www/HAO PORT=3010 APP_USER=www-data APP_GROUP=www-data ./deploy/systemd/install-service.sh
+```
+
+Проверка статуса:
+
+```bash
+sudo systemctl status hao-lending
+```
+
+Логи сервиса:
+
+```bash
+sudo journalctl -u hao-lending -f
+```
+
+После изменений в коде:
+
+```bash
+git pull
+npm install
+npm run build
+sudo systemctl restart hao-lending
+```
+
+---
+
+## 6. Деплой на Vercel
 
 1. Загрузи проект на GitHub (уже сделано)
 2. Открой [vercel.com](https://vercel.com) → **Import Project** → выбери репозиторий

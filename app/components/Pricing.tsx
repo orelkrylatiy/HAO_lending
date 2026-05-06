@@ -90,9 +90,9 @@ export default function Pricing({ onSignup }: { onSignup?: () => void }) {
         </div>
 
         <div className="text-center mt-8">
-          <div className="inline-flex items-center gap-3 bg-[#fff8f3] rounded-xl px-6 py-3 border border-[#f0e8e0]">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#FFE9D2"/><path d="M10 6v5l3 2" stroke="#F86704" strokeWidth="1.6" strokeLinecap="round"/></svg>
-            <span className="text-[#3d2b1f] text-sm">
+          <div className="inline-flex items-center gap-3 bg-[#F86704] rounded-xl px-6 py-3 border border-[#F86704] shadow-sm">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="rgba(255,255,255,0.24)"/><path d="M10 6v5l3 2" stroke="white" strokeWidth="1.8" strokeLinecap="round"/></svg>
+            <span className="text-white text-sm">
               <strong>Пробный урок — бесплатно.</strong> Без обязательств.
             </span>
           </div>

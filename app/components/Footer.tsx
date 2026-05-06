@@ -58,12 +58,12 @@ export default function Footer() {
                 Политика конфиденциальности
               </a>
               <div className="flex gap-4 mt-2">
-                <a href={CONTACTS.whatsapp} aria-label="WhatsApp" target="_blank" rel="noopener noreferrer"
-                  className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors">
+                <a href={CONTACTS.whatsapp} aria-label="WhatsApp"
+                  className="relative z-10 w-12 h-12 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors">
                   <Image src="/images/whatsapp.svg" alt="WhatsApp" width={24} height={24} />
                 </a>
-                <a href={CONTACTS.telegram} aria-label="Telegram" target="_blank" rel="noopener noreferrer"
-                  className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors">
+                <a href={CONTACTS.telegram} aria-label="Telegram"
+                  className="relative z-10 w-12 h-12 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors">
                   <Image src="/images/telegram.svg" alt="Telegram" width={24} height={24} />
                 </a>
               </div>
