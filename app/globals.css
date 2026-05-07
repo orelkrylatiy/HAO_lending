@@ -101,7 +101,7 @@ button, a, input, select, textarea {
 
 .carousel-btn {
   position: relative;
-  z-index: 1;
+  z-index: 30;
   width: 44px;
   height: 44px;
   min-width: 44px;
@@ -118,11 +118,14 @@ button, a, input, select, textarea {
   flex-shrink: 0;
   appearance: none;
   -webkit-appearance: none;
-  pointer-events: auto;
+  pointer-events: auto !important;
   touch-action: manipulation;
   user-select: none;
   transition: transform 0.2s ease, opacity 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
   box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+.carousel-btn > * {
+  pointer-events: none;
 }
 .carousel-btn:hover {
   background-color: #333;
@@ -133,7 +136,7 @@ button, a, input, select, textarea {
 }
 .carousel-dot {
   position: relative;
-  z-index: 1;
+  z-index: 30;
   height: 8px;
   border: 0;
   outline: none;
@@ -141,7 +144,7 @@ button, a, input, select, textarea {
   border-radius: 9999px;
   appearance: none;
   -webkit-appearance: none;
-  pointer-events: auto;
+  pointer-events: auto !important;
   touch-action: manipulation;
   user-select: none;
   transition: all 0.2s ease;

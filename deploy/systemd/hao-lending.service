@@ -1,0 +1,19 @@
+[Unit]
+Description=HAO Lending Next.js app
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/var/www/HAO
+Environment=NODE_ENV=production
+Environment=PORT=3010
+ExecStart=/usr/bin/npm run start
+Restart=always
+RestartSec=5
+User=www-data
+Group=www-data
+KillSignal=SIGINT
+TimeoutStopSec=30
+
+[Install]
+WantedBy=multi-user.target
