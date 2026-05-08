@@ -31,14 +31,16 @@ export default function Reviews() {
                 &ldquo;{r.text}&rdquo;
               </p>
               <div className="flex items-center gap-4 pt-4 border-t border-[#f0cfae]">
-                <Image
-                  src={r.photo}
-                  alt={r.name}
-                  width={44}
-                  height={44}
-                  className="h-11 w-11 rounded-full object-cover border border-[#f0cfae]"
-                  unoptimized
-                />
+                <div className="relative h-11 w-11 shrink-0 overflow-hidden rounded-full border border-[#f0cfae] bg-white">
+                  <Image
+                    src={r.photo}
+                    alt={r.name}
+                    fill
+                    className="object-cover object-center"
+                    sizes="44px"
+                    unoptimized
+                  />
+                </div>
                 <div>
                   <div className="font-bold text-[#121212] text-[16px]">{r.name}</div>
                   <div className="text-[13px] text-[#6b5c4e]">{r.role}</div>
@@ -58,14 +60,16 @@ export default function Reviews() {
                   &ldquo;{r.text}&rdquo;
                 </p>
                 <div className="flex items-center gap-3 pt-4 border-t border-[#f0cfae]">
-                  <Image
-                    src={r.photo}
-                    alt={r.name}
-                    width={40}
-                    height={40}
-                    className="h-10 w-10 rounded-full object-cover border border-[#f0cfae]"
-                    unoptimized
-                  />
+                  <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full border border-[#f0cfae] bg-white">
+                    <Image
+                      src={r.photo}
+                      alt={r.name}
+                      fill
+                      className="object-cover object-center"
+                      sizes="40px"
+                      unoptimized
+                    />
+                  </div>
                   <div>
                     <div className="font-bold text-[#121212] text-[14px]">{r.name}</div>
                     <div className="text-[12px] text-[#6b5c4e]">{r.role}</div>
@@ -88,7 +92,6 @@ export default function Reviews() {
                 type="button"
                 onClick={() => setStart(i)}
                 aria-label={`Отзыв ${i + 1}`}
-                aria-pressed={i === start}
                 className="relative z-30 w-7 h-7 flex items-center justify-center"
               >
                 <span className={`carousel-dot ${i === start ? "carousel-dot-active" : "carousel-dot-inactive"}`} />
