@@ -36,7 +36,7 @@ export default function Reviews() {
                   alt={r.name}
                   width={44}
                   height={44}
-                  className="h-11 w-11 rounded-full object-cover border border-[#f0cfae]"
+                  className="h-11 w-11 shrink-0 aspect-square rounded-full object-cover border border-[#f0cfae]"
                   unoptimized
                 />
                 <div>
@@ -63,7 +63,7 @@ export default function Reviews() {
                     alt={r.name}
                     width={40}
                     height={40}
-                    className="h-10 w-10 rounded-full object-cover border border-[#f0cfae]"
+                    className="h-10 w-10 shrink-0 aspect-square rounded-full object-cover border border-[#f0cfae]"
                     unoptimized
                   />
                   <div>
