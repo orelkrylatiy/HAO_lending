@@ -4,12 +4,12 @@ import { KIDS_FEATURES, ADULT_FEATURES } from "@/app/lib/data";
 
 function CheckIcon({ variant = "light" }: { variant?: "light" | "dark" }) {
   return variant === "light" ? (
-    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" className="flex-shrink-0">
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" className="shrink-0">
       <circle cx="9" cy="9" r="9" fill="#FFE9D2"/>
       <path d="M5.5 9L7.5 11L12.5 6.5" stroke="#F86704" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
     </svg>
   ) : (
-    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" className="flex-shrink-0">
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" className="shrink-0">
       <circle cx="9" cy="9" r="9" fill="rgba(255,255,255,0.2)"/>
       <path d="M5.5 9L7.5 11L12.5 6.5" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
     </svg>
@@ -58,7 +58,7 @@ export default function Pricing({ onSignup }: { onSignup?: () => void }) {
               onClick={handleSignup}
               className="w-full py-4 rounded-full bg-white text-[#F86704] font-bold text-[16px] text-center hover:bg-[#fff5ee] transition-colors"
             >
-              Записаться
+              Записаться на бесплатный урок
             </button>
           </div>
 
@@ -84,7 +84,7 @@ export default function Pricing({ onSignup }: { onSignup?: () => void }) {
               onClick={handleSignup}
               className="w-full py-3 rounded-full border-2 border-[#F86704] text-[#F86704] font-semibold text-center hover:bg-[#FFE9D2] transition-colors"
             >
-              Записаться
+              Записаться на бесплатный урок
             </button>
           </div>
         </div>
