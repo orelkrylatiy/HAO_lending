@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { REVIEWS } from "@/app/lib/data";
 
 const VISIBLE = 3;
@@ -25,11 +26,19 @@ export default function Reviews() {
         {/* Desktop: 3 cards */}
         <div className="hidden md:grid grid-cols-3 gap-5">
           {visible.map((r, i) => (
-            <div key={r.name + i} className="bg-[#FFE9D2] rounded-none h-[280px] p-7 flex flex-col justify-between overflow-hidden">
-              <p className="text-[#3d2b1f] text-[16px] leading-relaxed flex-1 mb-6 overflow-hidden">
+            <div key={r.name + i} className="bg-[#FFE9D2] rounded-none p-7 flex flex-col justify-between min-h-80">
+              <p className="text-[#3d2b1f] text-[16px] leading-relaxed flex-1 mb-6">
                 &ldquo;{r.text}&rdquo;
               </p>
               <div className="flex items-center gap-4 pt-4 border-t border-[#f0cfae]">
+                <Image
+                  src={r.photo}
+                  alt={r.name}
+                  width={44}
+                  height={44}
+                  className="h-11 w-11 rounded-full object-cover border border-[#f0cfae]"
+                  unoptimized
+                />
                 <div>
                   <div className="font-bold text-[#121212] text-[16px]">{r.name}</div>
                   <div className="text-[13px] text-[#6b5c4e]">{r.role}</div>
@@ -44,11 +53,19 @@ export default function Reviews() {
           {(() => {
             const r = REVIEWS[start];
             return (
-              <div className="bg-[#FFE9D2] rounded-2xl h-[320px] p-6 flex flex-col justify-between overflow-hidden">
-                <p className="text-[#3d2b1f] text-[14px] leading-relaxed flex-1 mb-5 overflow-hidden">
+              <div className="bg-[#FFE9D2] rounded-2xl p-6 flex flex-col justify-between min-h-80">
+                <p className="text-[#3d2b1f] text-[14px] leading-relaxed flex-1 mb-5">
                   &ldquo;{r.text}&rdquo;
                 </p>
                 <div className="flex items-center gap-3 pt-4 border-t border-[#f0cfae]">
+                  <Image
+                    src={r.photo}
+                    alt={r.name}
+                    width={40}
+                    height={40}
+                    className="h-10 w-10 rounded-full object-cover border border-[#f0cfae]"
+                    unoptimized
+                  />
                   <div>
                     <div className="font-bold text-[#121212] text-[14px]">{r.name}</div>
                     <div className="text-[12px] text-[#6b5c4e]">{r.role}</div>

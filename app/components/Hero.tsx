@@ -65,15 +65,15 @@ export default function Hero() {
               {/* Benefit icon cards — top right corner of hero */}
               <div className="w-full flex justify-center md:absolute md:top-10 md:right-10 md:w-auto md:justify-end gap-4 lg:gap-6 z-10 mb-5 md:mb-0">
                 <div className="flex flex-col items-center gap-2">
-                  <Image src="/images/icon-education.svg" alt="обучение за рубежом" width={86} height={80} className="w-[64px] md:w-[78px] lg:w-[86px] h-auto" unoptimized />
+                  <Image src="/images/icons/icon-education.svg" alt="обучение за рубежом" width={86} height={80} className="w-[64px] md:w-[78px] lg:w-[86px] h-auto" unoptimized />
                   <span className="text-[12px] md:text-[14px] font-semibold text-[#3d2b1f] text-center leading-tight">обучение<br/>за рубежом</span>
                 </div>
                 <div className="flex flex-col items-center gap-2">
-                  <Image src="/images/icon-education1.svg" alt="высокий доход" width={86} height={80} className="w-[64px] md:w-[78px] lg:w-[86px] h-auto" unoptimized />
+                  <Image src="/images/icons/icon-education1.svg" alt="высокий доход" width={86} height={80} className="w-[64px] md:w-[78px] lg:w-[86px] h-auto" unoptimized />
                   <span className="text-[12px] md:text-[14px] font-semibold text-[#3d2b1f] text-center leading-tight">высокий<br/>доход</span>
                 </div>
                 <div className="flex flex-col items-center gap-2">
-                  <Image src="/images/icon-bag.svg" alt="карьерный рост" width={86} height={80} className="w-[64px] md:w-[78px] lg:w-[86px] h-auto" unoptimized />
+                  <Image src="/images/icons/icon-bag.svg" alt="карьерный рост" width={86} height={80} className="w-[64px] md:w-[78px] lg:w-[86px] h-auto" unoptimized />
                   <span className="text-[12px] md:text-[14px] font-semibold text-[#3d2b1f] text-center leading-tight">карьерный<br/>рост</span>
                 </div>
               </div>

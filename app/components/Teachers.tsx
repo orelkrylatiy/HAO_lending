@@ -27,22 +27,22 @@ export default function Teachers() {
           </p>
         </div>
 
-        {/* Wide desktop: 3 cards */}
-        <div className="hidden xl:grid grid-cols-3 gap-5">
+        {/* Wide desktop: 2 cards on xl, 3 cards on 2xl */}
+        <div className="hidden xl:grid xl:grid-cols-2 2xl:grid-cols-3 gap-5">
           {visible.map((t, i) => (
-            <div key={t.name + i} className="bg-[#FFE9D2] rounded-2xl p-6 shadow-sm border border-[#f0e8e0] min-h-[260px] flex flex-col">
+            <div key={t.name + i} className="bg-[#FFE9D2] rounded-2xl p-6 shadow-sm border border-[#f0e8e0] min-h-[560px] flex flex-col">
               <div className="mb-5">
                 <div className="font-black text-[#121212] text-[20px] leading-tight">{t.name}</div>
                 <div className="text-[14px] text-[#3d2b1f] font-semibold mt-1">{t.spec}</div>
               </div>
-              <div className="grid grid-cols-[150px_1fr] gap-5 items-end flex-1">
-                <div className="relative h-[190px] rounded-xl overflow-hidden bg-white/45">
+              <div className="flex flex-col gap-5 flex-1">
+                <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-white/45">
                   <Image
                     src={t.img}
                     alt=""
                     fill
                     className="object-cover object-center blur-xl scale-110 opacity-45"
-                    sizes="150px"
+                    sizes="(min-width: 1536px) 360px, 560px"
                     aria-hidden="true"
                     unoptimized
                   />
@@ -50,13 +50,13 @@ export default function Teachers() {
                     src={t.img}
                     alt={t.name}
                     fill
-                    className="object-contain object-center relative z-10"
-                    sizes="150px"
+                    className="object-cover object-center relative z-10"
+                    sizes="(min-width: 1536px) 360px, 560px"
                     unoptimized
                   />
                 </div>
                 <div className="flex flex-col justify-between h-full">
-                  <p className="text-[#3d2b1f] text-[15px] leading-snug">{t.desc}</p>
+                  <p className="text-[#3d2b1f] text-[15px] leading-relaxed">{t.desc}</p>
                   <div className="text-[12px] text-[#6b5c4e] mt-4">{t.role}</div>
                 </div>
               </div>
@@ -74,7 +74,7 @@ export default function Teachers() {
                   <div className="font-black text-[#121212] text-[20px]">{t.name}</div>
                   <div className="text-[14px] text-[#3d2b1f] font-semibold mt-1">{t.spec}</div>
                 </div>
-                <div className="relative h-72 md:h-[420px] rounded-xl overflow-hidden bg-white/45">
+                <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-white/45">
                   <Image
                     src={t.img}
                     alt=""
@@ -84,7 +84,7 @@ export default function Teachers() {
                     aria-hidden="true"
                     unoptimized
                   />
-                  <Image src={t.img} alt={t.name} fill className="object-contain object-center relative z-10" sizes="100vw" unoptimized />
+                  <Image src={t.img} alt={t.name} fill className="object-cover object-center relative z-10" sizes="100vw" unoptimized />
                 </div>
                 <p className="text-[#3d2b1f] text-[14px] leading-relaxed">{t.desc}</p>
                 <div className="text-[11px] text-[#6b5c4e]">{t.role}</div>

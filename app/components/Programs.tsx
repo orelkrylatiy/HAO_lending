@@ -24,8 +24,8 @@ export default function Programs() {
         {/* Desktop 3-col layout */}
         <div className="hidden md:grid grid-cols-[280px_1fr_270px] gap-6 items-stretch">
           <div className="bg-[#FFE9D2] rounded-2xl overflow-hidden flex flex-col">
-            <div className="flex-1 relative min-h-[300px]">
-              <Image src="/images/teacher-siqin.jpg" alt="Сицин" fill className="object-cover object-center" sizes="280px" unoptimized />
+            <div className="flex-1 relative min-h-75">
+              <Image src="/images/teachers/teacher-siqin.jpg" alt="Сицин" fill className="object-cover object-center" sizes="280px" unoptimized />
             </div>
             <div className="p-5">
               <div className="font-black text-[#121212] text-[18px]">Сицин</div>
@@ -50,7 +50,7 @@ export default function Programs() {
               <ul className="flex flex-col gap-3">
                 {current.features.map((f) => (
                   <li key={f} className="flex items-center gap-3 text-[15px] text-[#3d2b1f]">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" className="flex-shrink-0">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" className="shrink-0">
                       <circle cx="10" cy="10" r="10" fill="#FFE9D2"/>
                       <path d="M6 10l3 3 5-5" stroke="#F86704" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
@@ -81,9 +81,6 @@ export default function Programs() {
         <div className="md:hidden grid grid-cols-1 sm:grid-cols-2 gap-4">
           {PROGRAMS.map((p, i) => (
             <div key={p.id} className={`rounded-2xl p-5 flex flex-col gap-3 ${i === 0 ? "bg-[#F86704] text-white" : "bg-white border border-[#f0e8e0]"}`}>
-              <div className={`w-full h-36 relative rounded-xl overflow-hidden ${i === 0 ? "bg-white/20" : "bg-[#FFE9D2]"}`}>
-                <Image src={p.img} alt={p.title} fill className="object-contain p-2" sizes="300px" unoptimized />
-              </div>
               <span className={`text-[11px] font-bold px-2.5 py-0.5 rounded-full self-start ${i === 0 ? "bg-white/20 text-white" : "bg-[#FFE9D2] text-[#F86704]"}`}>
                 {p.tag}
               </span>

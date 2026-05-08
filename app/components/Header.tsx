@@ -12,7 +12,7 @@ export default function Header() {
       <div className="container-main flex items-center justify-between h-[72px]">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3 flex-shrink-0">
-          <Image src="/images/logo-x.svg" alt="HAO логотип" width={36} height={36} />
+          <Image src="/images/icons/logo-x.svg" alt="HAO логотип" width={36} height={36} />
           <div className="flex flex-col leading-none">
             <span className="text-[22px] font-black text-[#121212] tracking-tight">НАО</span>
             <span className="text-[10px] text-[#6b5c4e] font-medium leading-tight">онлайн школа китайского языка</span>
