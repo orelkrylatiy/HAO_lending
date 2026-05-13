@@ -1,22 +1,23 @@
 "use client";
-
+import { getDictionary, Lang } from "@/app/lib/dictionaries";
 import { useState } from "react";
-import { FAQ_ITEMS } from "@/app/lib/data";
 
-export default function FAQ() {
+
+export default function FAQ({ lang = "ru" }: { lang?: Lang }) {
+  const dict = getDictionary(lang);
   const [open, setOpen] = useState<number | null>(null);
 
   return (
     <section id="faq" className="bg-[#fcfbf7] py-14 md:py-16">
       <div className="container-main">
         <div className="text-center mb-8 md:mb-10">
-          <h2 className="text-[26px] sm:text-[32px] md:text-[40px] font-black text-[#121212]">
-            Часто задаваемые вопросы
-          </h2>
+          <h2 className="text-[30px] sm:text-[38px] md:text-[48px] font-black text-[#121212] mb-10 md:mb-14 text-center leading-tight">
+          {dict.faq_sec.title}
+        </h2>
         </div>
 
         <div className="flex flex-col gap-3 max-w-3xl mx-auto">
-          {FAQ_ITEMS.map((faq, i) => (
+          {dict.data.FAQ_ITEMS.map((faq, i) => (
             <div
               key={i}
               className={`rounded-2xl transition-colors ${open === i ? "bg-[#FFE9D2]" : "bg-[#FFE9D2]/60 hover:bg-[#FFE9D2]"}`}
