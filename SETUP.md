@@ -150,11 +150,11 @@ GOOGLE_SCRIPT_URL=https://script.google.com/macros/s/ВАШ_ID/exec
 
 | Файл | Студент |
 |---|---|
-| `teacher-peng-jin.jpg` | Анна Гернер / Александра |
+| `teacher-peng-jin.webp` | Анна Гернер / Александра |
 | `teacher-dai-wei.jpg` | Никита |
 | `teacher-siqin.jpg` | Елена Форонова |
 | `teacher-alua.jpg` | Тимур |
-| `teacher-kai-nin.jpg` | Анастасия |
+| `teacher-kai-nin.webp` | Анастасия |
 
 Рекомендуемый размер: **200×200px**, формат JPG.
 
@@ -310,3 +310,7 @@ sudo systemctl restart hao-lending
 
 > Файл `.env.local` не заливается на GitHub — это нормально и правильно.
 > На Vercel переменные добавляются вручную через интерфейс.
+# Lint
+# npm run lint
+# npm run lint:fix
+# npm run lint:check

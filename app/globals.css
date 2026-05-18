@@ -157,3 +157,59 @@ button, a, input, select, textarea {
 .carousel-dot:focus-visible {
   box-shadow: 0 0 0 3px rgba(248, 103, 4, 0.18);
 }
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes soft-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@layer components {
+  .animate-fade-up {
+    animation: fade-up 0.7s ease-out both;
+  }
+
+  .animate-fade-up-delay-1 {
+    animation: fade-up 0.7s ease-out 0.12s both;
+  }
+
+  .animate-fade-up-delay-2 {
+    animation: fade-up 0.7s ease-out 0.24s both;
+  }
+
+  .animate-soft-float {
+    animation: soft-float 5s ease-in-out infinite;
+  }
+
+  .card-lift {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .card-lift:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 32px rgba(61, 43, 31, 0.12);
+  }
+
+  .button-lift {
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+  }
+
+  .button-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(61, 43, 31, 0.12);
+  }
+}

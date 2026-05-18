@@ -1,6 +1,7 @@
 import { getDictionary, Lang } from "@/app/lib/dictionaries";
 import Image from "next/image";
 import { CONTACTS } from "@/app/lib/contacts";
+import { LEGAL_DOCUMENTS } from "@/app/lib/legal";
 
 
 export default function Footer({ lang = "ru" }: { lang?: Lang }) {
@@ -25,7 +26,7 @@ export default function Footer({ lang = "ru" }: { lang?: Lang }) {
               {CONTACTS.email && (
                 <div>
                   <p className="text-white/70 text-[12px] font-semibold uppercase tracking-wide mb-0.5">{dict.footer_sec.email}</p>
-                  <a href={`mailto:${CONTACTS.email}`} className="text-white font-medium text-[15px] hover:text-white/80 transition-colors">
+                  <a href={`mailto:${CONTACTS.email}`} className="text-white font-medium text-[15px] hover:text-white/80 transition-colors break-all">
                     {CONTACTS.email}
                   </a>
                 </div>
@@ -33,7 +34,7 @@ export default function Footer({ lang = "ru" }: { lang?: Lang }) {
               {CONTACTS.phone && (
                 <div>
                   <p className="text-white/70 text-[12px] font-semibold uppercase tracking-wide mb-0.5">{dict.footer_sec.phone}</p>
-                  <a href={`tel:${CONTACTS.phoneRaw}`} className="text-white font-medium text-[15px] hover:text-white/80 transition-colors">
+                  <a href={`tel:${CONTACTS.phoneRaw}`} className="text-white font-medium text-[15px] hover:text-white/80 transition-colors whitespace-nowrap">
                     {CONTACTS.phone}
                   </a>
                 </div>
@@ -43,8 +44,21 @@ export default function Footer({ lang = "ru" }: { lang?: Lang }) {
 
           <div className="flex-1">
             <div className="flex flex-col gap-4">
-              <a href="#" className="text-white font-bold text-[15px] hover:text-white/80 transition-colors leading-tight" dangerouslySetInnerHTML={{ __html: dict.footer_sec.terms.replace("/", "<br/>") }} />
-              <a href="#" className="text-white font-medium text-[14px] hover:text-white/80 transition-colors">{dict.footer_sec.policy}</a>
+              <a
+                href={LEGAL_DOCUMENTS.offer.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white font-bold text-[15px] hover:text-white/80 transition-colors leading-tight"
+                dangerouslySetInnerHTML={{ __html: dict.footer_sec.terms.replace("/", "<br/>") }}
+              />
+              <a
+                href={LEGAL_DOCUMENTS.policy.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white font-medium text-[14px] hover:text-white/80 transition-colors"
+              >
+                {dict.footer_sec.policy}
+              </a>
               <div className="flex gap-4 mt-2">
                 <a href={CONTACTS.whatsapp} aria-label="WhatsApp"
                   className="relative z-10 w-12 h-12 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors">

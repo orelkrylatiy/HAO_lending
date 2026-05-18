@@ -20,8 +20,8 @@ export default function HomeEn() {
       <Header lang="en" />
       <main>
         <Hero lang="en" />
-        <Programs lang="en" />
         <Teachers lang="en" />
+        <Programs lang="en" />
         <Journey lang="en" />
         <Reviews lang="en" />
         <Pricing lang="en" onSignup={() => setModalOpen(true)} />

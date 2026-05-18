@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { getDictionary, Lang } from "@/app/lib/dictionaries";
+import { LEGAL_DOCUMENTS } from "@/app/lib/legal";
 
 interface Props {
   isOpen: boolean;
@@ -16,6 +17,7 @@ export default function LeadModal({ isOpen, onClose, title, lang = "ru" }: Props
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState(lang === "en" ? "+1 " : "+7 ");
+  const [isAgreementChecked, setIsAgreementChecked] = useState(false);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
 
@@ -118,6 +120,37 @@ export default function LeadModal({ isOpen, onClose, title, lang = "ru" }: Props
 
             {status === "error" && <p className="text-red-600 text-[13px] text-center">{errorMsg}</p>}
 
+            <label className="flex items-start gap-3 text-[12px] leading-relaxed text-[#6b5c4e]">
+              <input
+                type="checkbox"
+                checked={isAgreementChecked}
+                onChange={(event) => setIsAgreementChecked(event.target.checked)}
+                required
+                className="mt-0.5 h-4 w-4 flex-shrink-0 rounded border-[#d8c4b1] text-[#F86704] focus:ring-[#F86704]"
+              />
+              <span>
+                {lang === "ru" ? "Я ознакомлен(а) и согласен(на) с условиями " : "I have read and agree to the "}
+                <a
+                  href={LEGAL_DOCUMENTS.offer.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-semibold text-[#121212] underline underline-offset-2"
+                >
+                  {lang === "ru" ? "Договора-оферты" : "Terms of Offer"}
+                </a>
+                {lang === "ru" ? " и " : " and the "}
+                <a
+                  href={LEGAL_DOCUMENTS.policy.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-semibold text-[#121212] underline underline-offset-2"
+                >
+                  {lang === "ru" ? "Политики конфиденциальности" : "Privacy Policy"}
+                </a>
+                .
+              </span>
+            </label>
+
             <button
               type="submit"
               disabled={status === "loading"}
@@ -125,10 +158,6 @@ export default function LeadModal({ isOpen, onClose, title, lang = "ru" }: Props
             >
               {status === "loading" ? dict.modal.sending : dict.modal.submit}
             </button>
-
-            <p className="text-center text-[11px] text-[#6b5c4e] leading-relaxed">
-              {dict.modal.agreement}
-            </p>
           </form>
         )}
       </div>

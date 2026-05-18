@@ -38,7 +38,6 @@ export default function Reviews({ lang = "ru" }: { lang?: Lang }) {
                   width={44}
                   height={44}
                   className="h-11 w-11 shrink-0 aspect-square rounded-full object-cover border border-[#f0cfae] pointer-events-none"
-                  unoptimized
                 />
                 <div>
                   <div className="font-bold text-[#121212] text-[16px]">{r.name}</div>
@@ -65,7 +64,6 @@ export default function Reviews({ lang = "ru" }: { lang?: Lang }) {
                     width={40}
                     height={40}
                     className="h-10 w-10 shrink-0 aspect-square rounded-full object-cover border border-[#f0cfae] pointer-events-none"
-                    unoptimized
                   />
                   <div>
                     <div className="font-bold text-[#121212] text-[14px]">{r.name}</div>

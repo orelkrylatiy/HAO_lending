@@ -12,7 +12,7 @@ export default function Programs({ lang = "ru" }: { lang?: Lang }) {
   return (
     <section id="programs" className="bg-[#fff8f3] py-14 md:py-16">
       <div className="container-main">
-        <div className="text-center mb-12 md:mb-14">
+        <div className="text-center mb-12 md:mb-14 animate-fade-up">
           <h2 className="text-[34px] sm:text-[42px] md:text-[56px] font-black text-[#121212] mb-4 leading-tight">
             {dict.programs_sec.title}
           </h2>
@@ -23,9 +23,9 @@ export default function Programs({ lang = "ru" }: { lang?: Lang }) {
 
         {/* Desktop 3-col layout */}
         <div className="hidden md:grid grid-cols-[280px_1fr_270px] gap-6 items-stretch">
-          <div className="bg-[#FFE9D2] rounded-2xl overflow-hidden flex flex-col">
+          <div className="card-lift bg-[#FFE9D2] rounded-2xl overflow-hidden flex flex-col">
             <div className="flex-1 relative min-h-75">
-              <Image src="/images/teachers/teacher-siqin.webp" alt={dict.programs_sec.teacher_name} fill className="object-cover object-center pointer-events-none" sizes="280px" unoptimized />
+              <Image src="/images/teachers/teacher-siqin.webp" alt={dict.programs_sec.teacher_name} fill className="object-cover object-center pointer-events-none" sizes="280px" />
             </div>
             <div className="p-5">
               <div className="font-black text-[#121212] text-[18px]">{dict.programs_sec.teacher_name}</div>
@@ -36,7 +36,7 @@ export default function Programs({ lang = "ru" }: { lang?: Lang }) {
             </div>
           </div>
 
-          <div className="bg-white rounded-2xl p-7 flex flex-col shadow-sm border border-[#f0e8e0]">
+          <div className="card-lift bg-white rounded-2xl p-7 flex flex-col shadow-sm border border-[#f0e8e0]">
             <div className="mb-4">
               <span className="bg-[#F86704] text-white text-[12px] font-bold px-3 py-1.5 rounded-full">
                 {current.tag}
@@ -45,7 +45,7 @@ export default function Programs({ lang = "ru" }: { lang?: Lang }) {
             <h3 className="text-[30px] font-black text-[#121212] mb-5">{current.title}</h3>
             <div className="flex-1">
               <div className="w-full h-48 relative mb-5 rounded-xl overflow-hidden bg-[#FFE9D2]">
-                <Image src={current.img} alt={current.title} fill className="object-contain p-2 pointer-events-none" sizes="400px" unoptimized />
+                <Image src={current.img} alt={current.title} fill className="object-contain p-2 pointer-events-none" sizes="400px" />
               </div>
               <ul className="flex flex-col gap-3">
                 {current.features.map((f) => (
@@ -66,7 +66,7 @@ export default function Programs({ lang = "ru" }: { lang?: Lang }) {
               <button
                 key={p.id}
                 onClick={() => setActive(i)}
-                className={`relative z-10 w-full text-left px-4 py-4 rounded-xl font-semibold text-[15px] transition-all ${
+                className={`button-lift relative z-10 w-full text-left px-4 py-4 rounded-xl font-semibold text-[15px] transition-all ${
                   i === active ? "bg-[#F86704] text-white shadow-sm" : "bg-white/55 text-[#121212] hover:bg-white/80"
                 }`}
               >
@@ -80,7 +80,7 @@ export default function Programs({ lang = "ru" }: { lang?: Lang }) {
         {/* Mobile: grid of cards */}
         <div className="md:hidden grid grid-cols-1 sm:grid-cols-2 gap-4">
           {dict.data.PROGRAMS.map((p, i) => (
-            <div key={p.id} className={`rounded-2xl p-5 flex flex-col gap-3 ${i === 0 ? "bg-[#F86704] text-white" : "bg-white border border-[#f0e8e0]"}`}>
+            <div key={p.id} className={`card-lift rounded-2xl p-5 flex flex-col gap-3 ${i === 0 ? "bg-[#F86704] text-white" : "bg-white border border-[#f0e8e0]"}`}>
               <span className={`text-[11px] font-bold px-2.5 py-0.5 rounded-full self-start ${i === 0 ? "bg-white/20 text-white" : "bg-[#FFE9D2] text-[#F86704]"}`}>
                 {p.tag}
               </span>
@@ -95,7 +95,7 @@ export default function Programs({ lang = "ru" }: { lang?: Lang }) {
             onClick={() => {
               document.getElementById("pricing")?.scrollIntoView({ behavior: "smooth" });
             }}
-            className="btn-primary relative z-10 flex w-full text-[17px] py-5 rounded-2xl gap-3 justify-center"
+            className="btn-primary button-lift relative z-10 flex w-full text-[17px] py-5 rounded-2xl gap-3 justify-center"
           >
             {dict.hero.cta} →
           </button>

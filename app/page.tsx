@@ -20,8 +20,8 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
-        <Programs />
         <Teachers />
+        <Programs />
         <Journey />
         <Reviews />
         <Pricing onSignup={() => setModalOpen(true)} />

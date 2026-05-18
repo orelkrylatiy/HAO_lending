@@ -19,7 +19,7 @@ export default function Teachers({ lang = "ru" }: { lang?: Lang }) {
   return (
     <section id="teachers" className="bg-[#fcfbf7] py-14 md:py-20 overflow-x-hidden">
       <div className="container-main">
-        <div className="text-center mb-10 md:mb-12">
+        <div className="text-center mb-10 md:mb-12 animate-fade-up">
           <h2 className="text-[30px] sm:text-[38px] md:text-[44px] font-black text-[#121212] mb-5 leading-tight">
             {dict.teachers_sec.title}
           </h2>
@@ -31,7 +31,7 @@ export default function Teachers({ lang = "ru" }: { lang?: Lang }) {
         {/* Wide desktop: 2 cards on xl, 3 cards on 2xl */}
         <div className="hidden xl:grid xl:grid-cols-2 2xl:grid-cols-3 gap-5">
           {visible.map((t, i) => (
-            <div key={t.name + i} className="pointer-events-none bg-[#FFE9D2] rounded-2xl p-6 shadow-sm border border-[#f0e8e0] min-h-[560px] flex flex-col">
+            <div key={t.name + i} className="card-lift pointer-events-none bg-[#FFE9D2] rounded-2xl p-6 shadow-sm border border-[#f0e8e0] min-h-[560px] flex flex-col">
               <div className="mb-5">
                 <div className="font-black text-[#121212] text-[20px] leading-tight">{t.name}</div>
                 <div className="text-[14px] text-[#3d2b1f] font-semibold mt-1">{t.spec}</div>
@@ -40,20 +40,10 @@ export default function Teachers({ lang = "ru" }: { lang?: Lang }) {
                 <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-white/45">
                   <Image
                     src={t.img}
-                    alt=""
-                    fill
-                    className="object-cover object-center blur-xl scale-110 opacity-45 pointer-events-none"
-                    sizes="(min-width: 1536px) 360px, 560px"
-                    aria-hidden="true"
-                    unoptimized
-                  />
-                  <Image
-                    src={t.img}
                     alt={t.name}
                     fill
                     className="object-cover object-center relative z-10 pointer-events-none"
                     sizes="(min-width: 1536px) 360px, 560px"
-                    unoptimized
                   />
                 </div>
                 <div className="flex flex-col justify-between h-full">
@@ -70,22 +60,13 @@ export default function Teachers({ lang = "ru" }: { lang?: Lang }) {
           {(() => {
             const t = dict.data.TEACHERS[start];
             return (
-              <div className="pointer-events-none bg-[#FFE9D2] rounded-2xl p-6 shadow-sm border border-[#f0e8e0] flex flex-col gap-4">
+              <div className="card-lift pointer-events-none bg-[#FFE9D2] rounded-2xl p-6 shadow-sm border border-[#f0e8e0] flex flex-col gap-4">
                 <div>
                   <div className="font-black text-[#121212] text-[20px]">{t.name}</div>
                   <div className="text-[14px] text-[#3d2b1f] font-semibold mt-1">{t.spec}</div>
                 </div>
                 <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-white/45">
-                  <Image
-                    src={t.img}
-                    alt=""
-                    fill
-                    className="object-cover object-center blur-xl scale-110 opacity-45 pointer-events-none"
-                    sizes="100vw"
-                    aria-hidden="true"
-                    unoptimized
-                  />
-                  <Image src={t.img} alt={t.name} fill className="object-cover object-center relative z-10 pointer-events-none" sizes="100vw" unoptimized />
+                  <Image src={t.img} alt={t.name} fill className="object-cover object-center relative z-10 pointer-events-none" sizes="100vw" />
                 </div>
                 <p className="text-[#3d2b1f] text-[14px] leading-relaxed">{t.desc}</p>
                 <div className="text-[11px] text-[#6b5c4e]">{t.role}</div>
