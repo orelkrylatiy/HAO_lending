@@ -82,7 +82,7 @@ export const TEACHERS = [
     spec: "HSK 2–3 и разговорный",
     desc: "Работает со студентами и взрослыми. Готовит к экзамену HSK и помогает выучить язык для работы. Ученики успешно сдают HSK 2–3 уровня и начинают говорить увереннее уже через несколько месяцев.",
     img: "/images/teachers/teacher-kai-nin.webp",
-    objectPosition: "object-[center_50%]",
+    objectPosition: "object-[center_18%]",
   },
 ];
 

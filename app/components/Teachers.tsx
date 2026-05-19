@@ -37,12 +37,12 @@ export default function Teachers({ lang = "ru" }: { lang?: Lang }) {
                 <div className="text-[14px] text-[#3d2b1f] font-semibold mt-1">{t.spec}</div>
               </div>
               <div className="flex flex-col gap-5 flex-1">
-                <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-white/45">
+                <div className="relative aspect-[4/3.3] rounded-xl overflow-hidden bg-white/45">
                   <Image
                     src={t.img}
                     alt={t.name}
                     fill
-                    className="object-cover object-center relative z-10 pointer-events-none"
+                    className={`object-cover ${t.objectPosition ?? "object-center"} relative z-10 pointer-events-none`}
                     sizes="(min-width: 1536px) 360px, 560px"
                   />
                 </div>
@@ -65,8 +65,14 @@ export default function Teachers({ lang = "ru" }: { lang?: Lang }) {
                   <div className="font-black text-[#121212] text-[20px]">{t.name}</div>
                   <div className="text-[14px] text-[#3d2b1f] font-semibold mt-1">{t.spec}</div>
                 </div>
-                <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-white/45">
-                  <Image src={t.img} alt={t.name} fill className="object-cover object-center relative z-10 pointer-events-none" sizes="100vw" />
+                <div className="relative aspect-[4/3.3] rounded-xl overflow-hidden bg-white/45">
+                  <Image
+                    src={t.img}
+                    alt={t.name}
+                    fill
+                    className={`object-cover ${t.objectPosition ?? "object-center"} relative z-10 pointer-events-none`}
+                    sizes="100vw"
+                  />
                 </div>
                 <p className="text-[#3d2b1f] text-[14px] leading-relaxed">{t.desc}</p>
                 <div className="text-[11px] text-[#6b5c4e]">{t.role}</div>

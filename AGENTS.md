@@ -20,8 +20,8 @@
 | Глобальные стили и CSS-компоненты | `app/globals.css` |
 | Компоненты страницы | `app/components/` |
 | Общие UI (карусель, кнопки) | `app/components/ui/` |
-| Фото преподавателей | `public/images/teacher-*.jpg` |
-| Фото в отзывах | `public/images/review-*.jpg` |
+| Фото преподавателей | `public/images/teachers/*.webp` |
+| Фото в отзывах | `public/images/reviews/*.webp` |
 | Переменные окружения (шаблон) | `.env.local.example` |
 
 ---
@@ -54,12 +54,12 @@
 
 **Добавить отзыв** → `app/lib/data.ts`, массив `REVIEWS`:
 ```ts
-{ name: "Имя", role: "Курс", photo: "/images/review-имя.jpg", text: "Текст..." }
+{ name: "Имя", role: "Курс", photo: "/images/reviews/имя.webp", text: "Текст..." }
 ```
 
 **Добавить преподавателя** → `app/lib/data.ts`, массив `TEACHERS`:
 ```ts
-{ name: "Имя", role: "Преподаватель", spec: "Специализация", desc: "Описание.", img: "/images/teacher-имя.jpg" }
+{ name: "Имя", role: "Преподаватель", spec: "Специализация", desc: "Описание.", img: "/images/teachers/имя.webp" }
 ```
 
 **Изменить тариф/программу** → `app/lib/data.ts`, массивы `PROGRAMS` / `PRICING`.
