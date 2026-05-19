@@ -11,6 +11,7 @@ import Pricing from "./Pricing";
 import FAQ from "./FAQ";
 import Footer from "./Footer";
 import LeadModal from "./LeadModal";
+import FloatingCTA from "./FloatingCTA";
 import type { Lang } from "@/app/lib/dictionaries";
 
 export default function LandingPage({ lang = "ru" }: { lang?: Lang }) {
@@ -18,9 +19,9 @@ export default function LandingPage({ lang = "ru" }: { lang?: Lang }) {
 
   return (
     <>
-      <Header lang={lang} />
+      <Header lang={lang} onSignup={() => setModalOpen(true)} />
       <main>
-        <Hero lang={lang} />
+        <Hero lang={lang} onSignup={() => setModalOpen(true)} />
         <Teachers lang={lang} />
         <Programs lang={lang} />
         <Journey lang={lang} />
@@ -29,6 +30,7 @@ export default function LandingPage({ lang = "ru" }: { lang?: Lang }) {
         <FAQ lang={lang} />
       </main>
       <Footer lang={lang} />
+      <FloatingCTA lang={lang} onClick={() => setModalOpen(true)} />
       <LeadModal lang={lang} isOpen={modalOpen} onClose={() => setModalOpen(false)} />
     </>
   );

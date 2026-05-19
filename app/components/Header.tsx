@@ -5,9 +5,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { getDictionary, Lang } from "@/app/lib/dictionaries";
 
-export default function Header({ lang = "ru" }: { lang?: Lang }) {
+export default function Header({ lang = "ru", onSignup }: { lang?: Lang; onSignup?: () => void }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const dict = getDictionary(lang);
+
+  const handleSignupClick = () => {
+    setMenuOpen(false);
+    onSignup?.();
+  };
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-[#fcfbf7] border-b border-[#e8ddd5]">
@@ -36,13 +41,14 @@ export default function Header({ lang = "ru" }: { lang?: Lang }) {
             <span className="text-[#e8ddd5]">|</span>
             <Link href="/en" className={lang === "en" ? "text-[#F86704]" : "text-[#121212] hover:text-[#F86704]"}>EN</Link>
           </div>
-          <a
-            href="#pricing"
+          <button
+            type="button"
+            onClick={handleSignupClick}
             className="flex items-center gap-2 px-6 py-2.5 rounded-full border-2 border-[#121212] text-[#121212] text-[14px] font-semibold hover:bg-[#121212] hover:text-white transition-all cursor-pointer"
           >
             {dict.nav.cta}
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
-          </a>
+          </button>
         </div>
 
         {/* Mobile burger */}
@@ -70,13 +76,13 @@ export default function Header({ lang = "ru" }: { lang?: Lang }) {
           <a href="#teachers" className="text-[#121212] font-semibold text-[15px]" onClick={() => setMenuOpen(false)}>{dict.nav.teachers}</a>
           <a href="#reviews" className="text-[#121212] font-semibold text-[15px]" onClick={() => setMenuOpen(false)}>{dict.nav.reviews}</a>
           <a href="#pricing" className="text-[#121212] font-semibold text-[15px]" onClick={() => setMenuOpen(false)}>{dict.nav.pricing}</a>
-          <a
-            href="#pricing"
+          <button
+            type="button"
             className="mt-2 px-6 py-3 rounded-full border-2 border-[#121212] text-[#121212] font-semibold text-center hover:bg-[#121212] hover:text-white transition-all cursor-pointer"
-            onClick={() => setMenuOpen(false)}
+            onClick={handleSignupClick}
           >
             {dict.nav.cta} →
-          </a>
+          </button>
         </div>
       )}
     </header>

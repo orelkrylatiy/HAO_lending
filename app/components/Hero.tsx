@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { getDictionary, Lang } from "@/app/lib/dictionaries";
 
-export default function Hero({ lang = "ru" }: { lang?: Lang }) {
+export default function Hero({ lang = "ru", onSignup }: { lang?: Lang; onSignup?: () => void }) {
   const dict = getDictionary(lang);
   const handleScrollTo = (id: string) => {
     const element = document.getElementById(id);
@@ -34,7 +34,7 @@ export default function Hero({ lang = "ru" }: { lang?: Lang }) {
               <div className="flex flex-col gap-4 max-w-[560px] animate-fade-up-delay-2">
                 <button
                   type="button"
-                  onClick={() => handleScrollTo("pricing")}
+                  onClick={onSignup}
                   className="button-lift relative z-10 flex items-center justify-between gap-4 bg-[#F86704] text-white font-bold text-[17px] md:text-[21px] px-7 py-5 rounded-2xl hover:bg-[#e55a1f] transition-colors shadow-sm"
                 >
                   <span>{dict.hero.cta}</span>
