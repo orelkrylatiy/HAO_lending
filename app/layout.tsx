@@ -15,6 +15,20 @@ export const metadata: Metadata = {
     siteName: "HAO",
     locale: "ru_RU",
     type: "website",
+    images: [
+      {
+        url: "/icon.svg",
+        width: 512,
+        height: 512,
+        alt: "HAO — школа китайского языка",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "HAO — школа китайского языка",
+    description: "Эффективные онлайн-курсы китайского языка: от нуля до уверенного общения, гибкие форматы и график.",
+    images: ["/icon.svg"],
   },
 };
 
