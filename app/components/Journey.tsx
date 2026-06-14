@@ -1,6 +1,5 @@
 import { getDictionary, Lang } from "@/app/lib/dictionaries";
 
-
 export default function Journey({ lang = "ru" }: { lang?: Lang }) {
   const dict = getDictionary(lang);
   return (
