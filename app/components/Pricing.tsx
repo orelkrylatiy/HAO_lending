@@ -1,5 +1,4 @@
-"use client";
-
+import OpenSignupButton from "./OpenSignupButton";
 import { getDictionary, Lang } from "@/app/lib/dictionaries";
 
 function CheckIcon({ variant = "light" }: { variant?: "light" | "dark" }) {
@@ -16,7 +15,7 @@ function CheckIcon({ variant = "light" }: { variant?: "light" | "dark" }) {
   );
 }
 
-export default function Pricing({ lang = "ru", onSignup }: { lang?: Lang; onSignup?: () => void }) {
+export default function Pricing({ lang = "ru" }: { lang?: Lang }) {
   const dict = getDictionary(lang);
   const [trialTitle, trialText = ""] = dict.pricing_sec.trial.split(".");
 
@@ -51,13 +50,9 @@ export default function Pricing({ lang = "ru", onSignup }: { lang?: Lang; onSign
                 </li>
               ))}
             </ul>
-            <button
-              type="button"
-              onClick={onSignup}
-              className="relative z-10 w-full py-4 rounded-full bg-white text-[#F86704] font-bold text-[16px] text-center hover:bg-[#fff5ee] transition-colors"
-            >
+            <OpenSignupButton className="relative z-10 w-full py-4 rounded-full bg-white text-[#F86704] font-bold text-[16px] text-center hover:bg-[#fff5ee] transition-colors">
               {dict.pricing_sec.cta}
-            </button>
+            </OpenSignupButton>
           </div>
 
           <div className="relative z-10 bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-[#f0e8e0] flex flex-col">
@@ -76,13 +71,9 @@ export default function Pricing({ lang = "ru", onSignup }: { lang?: Lang; onSign
                 </li>
               ))}
             </ul>
-            <button
-              type="button"
-              onClick={onSignup}
-              className="relative z-10 w-full py-3 rounded-full border-2 border-[#F86704] text-[#F86704] font-semibold text-center hover:bg-[#FFE9D2] transition-colors"
-            >
+            <OpenSignupButton className="relative z-10 w-full py-3 rounded-full border-2 border-[#F86704] text-[#F86704] font-semibold text-center hover:bg-[#FFE9D2] transition-colors">
               {dict.pricing_sec.cta}
-            </button>
+            </OpenSignupButton>
           </div>
         </div>
 
