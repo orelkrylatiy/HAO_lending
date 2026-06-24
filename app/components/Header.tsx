@@ -19,7 +19,7 @@ export default function Header({ lang = "ru", onSignup }: { lang?: Lang; onSignu
       <div className="container-main relative z-10 flex items-center justify-between h-[72px]">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3 flex-shrink-0">
-          <Image src="/images/icons/logo-x.svg" alt={dict.header.logoAlt} width={36} height={36} />
+          <Image src="/icons/logo-x.svg" alt={dict.header.logoAlt} width={36} height={36} />
           <div className="flex flex-col leading-none">
             <span className="text-[22px] font-black text-[#121212] tracking-tight">{dict.header.title}</span>
             <span className="text-[10px] text-[#6b5c4e] font-medium leading-tight">{dict.header.subtitle}</span>

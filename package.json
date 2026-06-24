@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "lint:check": "eslint . --max-warnings=0"
+    "lint:check": "eslint . --max-warnings=0",
+    "images:optimize": "node scripts/optimize-images.mjs"
   },
   "dependencies": {
     "next": "16.2.4",

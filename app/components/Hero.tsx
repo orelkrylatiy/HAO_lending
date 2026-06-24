@@ -50,21 +50,21 @@ export default function Hero({ lang = "ru" }: { lang?: Lang }) {
             <div className="relative flex-1 flex flex-col md:flex-row items-center md:items-end justify-end overflow-hidden min-h-[300px] md:min-h-[520px] px-4 md:px-0 pt-6 md:pt-0 pointer-events-none">
               <div className="w-full flex justify-center md:absolute md:top-10 md:right-10 md:w-auto md:justify-end gap-4 lg:gap-6 z-10 mb-5 md:mb-0 pointer-events-none">
                 <div className="flex flex-col items-center gap-2 animate-fade-up-delay-1">
-                  <Image src="/images/icons/icon-education.svg" alt={dict.hero.benefit1.replace("\n", " ")} width={86} height={80} className="w-[64px] md:w-[78px] lg:w-[86px] h-auto pointer-events-none" />
+                  <Image src="/icons/icon-education.svg" alt={dict.hero.benefit1.replace("\n", " ")} width={86} height={80} className="w-[64px] md:w-[78px] lg:w-[86px] h-auto pointer-events-none" />
                   <span
                     className="text-[12px] md:text-[14px] font-semibold text-[#3d2b1f] text-center leading-tight"
                     dangerouslySetInnerHTML={{ __html: dict.hero.benefit1.replace("\n", "<br/>") }}
                   />
                 </div>
                 <div className="flex flex-col items-center gap-2 animate-fade-up-delay-2">
-                  <Image src="/images/icons/icon-education1.svg" alt={dict.hero.benefit2.replace("\n", " ")} width={86} height={80} className="w-[64px] md:w-[78px] lg:w-[86px] h-auto pointer-events-none" />
+                  <Image src="/icons/icon-education1.svg" alt={dict.hero.benefit2.replace("\n", " ")} width={86} height={80} className="w-[64px] md:w-[78px] lg:w-[86px] h-auto pointer-events-none" />
                   <span
                     className="text-[12px] md:text-[14px] font-semibold text-[#3d2b1f] text-center leading-tight"
                     dangerouslySetInnerHTML={{ __html: dict.hero.benefit2.replace("\n", "<br/>") }}
                   />
                 </div>
                 <div className="flex flex-col items-center gap-2 animate-fade-up-delay-2">
-                  <Image src="/images/icons/icon-bag.svg" alt={dict.hero.benefit3.replace("\n", " ")} width={86} height={80} className="w-[64px] md:w-[78px] lg:w-[86px] h-auto pointer-events-none" />
+                  <Image src="/icons/icon-bag.svg" alt={dict.hero.benefit3.replace("\n", " ")} width={86} height={80} className="w-[64px] md:w-[78px] lg:w-[86px] h-auto pointer-events-none" />
                   <span
                     className="text-[12px] md:text-[14px] font-semibold text-[#3d2b1f] text-center leading-tight"
                     dangerouslySetInnerHTML={{ __html: dict.hero.benefit3.replace("\n", "<br/>") }}
@@ -73,7 +73,7 @@ export default function Hero({ lang = "ru" }: { lang?: Lang }) {
               </div>
 
               <Image
-                src="/images/hero-illustration.webp"
+                src="/images/hero/hero-illustration.webp"
                 alt={dict.hero.desc}
                 width={700}
                 height={510}

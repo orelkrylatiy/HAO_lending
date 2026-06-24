@@ -62,11 +62,11 @@ export default function Footer({ lang = "ru" }: { lang?: Lang }) {
               <div className="flex gap-4 mt-2">
                 <a href={CONTACTS.whatsapp} aria-label="WhatsApp"
                   className="relative z-10 w-12 h-12 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors">
-                  <Image src="/images/icons/whatsapp.svg" alt="WhatsApp" width={24} height={24} />
+                  <Image src="/icons/whatsapp.svg" alt="WhatsApp" width={24} height={24} />
                 </a>
                 <a href={CONTACTS.telegram} aria-label="Telegram"
                   className="relative z-10 w-12 h-12 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors">
-                  <Image src="/images/icons/telegram.svg" alt="Telegram" width={24} height={24} />
+                  <Image src="/icons/telegram.svg" alt="Telegram" width={24} height={24} />
                 </a>
               </div>
             </div>
