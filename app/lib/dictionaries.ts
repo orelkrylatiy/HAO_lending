@@ -70,13 +70,6 @@ const PROVIDER_EN = {
   faqHref: "#faq",
 };
 
-const PROVIDER_RU = {
-  ...PROVIDER,
-  title: "Поставщик услуг:",
-  faqLabel: "FAQ",
-  faqHref: "#faq",
-};
-
 export const dictionaries = {
   ru: {
     header: {
@@ -166,7 +159,21 @@ export const dictionaries = {
       error_send: "Ошибка отправки",
       error_conn: "Ошибка соединения"
     },
-    data: { PROGRAMS, TEACHERS, REVIEWS, FAQ_ITEMS, JOURNEY_STEPS, KIDS_FEATURES, ADULT_FEATURES, PROVIDER: PROVIDER_RU }
+    data: {
+      PROGRAMS,
+      TEACHERS,
+      REVIEWS,
+      FAQ_ITEMS,
+      JOURNEY_STEPS,
+      KIDS_FEATURES,
+      ADULT_FEATURES,
+      PROVIDER: {
+        ...PROVIDER,
+        title: "Поставщик услуг:",
+        faqLabel: "FAQ",
+        faqHref: "#faq",
+      },
+    }
   },
   en: {
     header: {
