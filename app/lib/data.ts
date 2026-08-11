@@ -159,12 +159,3 @@ export const ADULT_FEATURES = [
   "Гибкое расписание",
   "Подготовка к HSK 1–6",
 ];
-
-export const PROVIDER = {
-  title: "Поставщик услуг:",
-  name: "ИП Хелиспали К.Г.",
-  innOgrnip: "ИНН/ОГРНИП. 667302881017/308667334600021",
-  city: "г.Екатеринбург",
-  faqLabel: "FAQ",
-  faqHref: "#faq",
-};

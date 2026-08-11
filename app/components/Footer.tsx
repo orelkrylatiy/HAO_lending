@@ -14,8 +14,8 @@ export default function Footer({ lang = "ru" }: { lang?: Lang }) {
             <h3 className="font-bold text-white text-[18px] mb-4">{dict.data.PROVIDER.title}</h3>
             <div className="flex flex-col gap-2 text-white/90 text-[15px]">
               <div className="font-medium">{dict.data.PROVIDER.name}</div>
-              <div className="italic">{dict.data.PROVIDER.innOgrnip}</div>
-              <div>{dict.data.PROVIDER.city}</div>
+              <div className="italic">{dict.data.PROVIDER.registration}</div>
+              <div>{dict.data.PROVIDER.address}</div>
               <a href={dict.data.PROVIDER.faqHref} className="mt-2 text-white font-medium hover:text-white/80 transition-colors">{dict.data.PROVIDER.faqLabel}</a>
             </div>
           </div>

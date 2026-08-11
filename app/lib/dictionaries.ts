@@ -1,4 +1,5 @@
-import { PROGRAMS, TEACHERS, REVIEWS, FAQ_ITEMS, JOURNEY_STEPS, KIDS_FEATURES, ADULT_FEATURES, PROVIDER } from "@/app/lib/data";
+import { PROGRAMS, TEACHERS, REVIEWS, FAQ_ITEMS, JOURNEY_STEPS, KIDS_FEATURES, ADULT_FEATURES } from "@/app/lib/data";
+import { PROVIDER } from "@/app/lib/provider";
 
 // Helper to fully translate data:
 const PROGRAMS_EN = [
@@ -63,12 +64,8 @@ const ADULT_FEATURES_EN = [
 ];
 
 const PROVIDER_EN = {
+  ...PROVIDER,
   title: "Service Provider:",
-  name: "IP Helispali K.G.",
-  innOgrnip: "TIN/OGRNIP: 667302881017/308667334600021",
-  city: "Yekaterinburg",
-  faqLabel: "FAQ",
-  faqHref: "#faq",
 };
 
 export const dictionaries = {
