@@ -66,6 +66,15 @@ const ADULT_FEATURES_EN = [
 const PROVIDER_EN = {
   ...PROVIDER,
   title: "Service Provider:",
+  faqLabel: "FAQ",
+  faqHref: "#faq",
+};
+
+const PROVIDER_RU = {
+  ...PROVIDER,
+  title: "Поставщик услуг:",
+  faqLabel: "FAQ",
+  faqHref: "#faq",
 };
 
 export const dictionaries = {
@@ -157,7 +166,7 @@ export const dictionaries = {
       error_send: "Ошибка отправки",
       error_conn: "Ошибка соединения"
     },
-    data: { PROGRAMS, TEACHERS, REVIEWS, FAQ_ITEMS, JOURNEY_STEPS, KIDS_FEATURES, ADULT_FEATURES, PROVIDER }
+    data: { PROGRAMS, TEACHERS, REVIEWS, FAQ_ITEMS, JOURNEY_STEPS, KIDS_FEATURES, ADULT_FEATURES, PROVIDER: PROVIDER_RU }
   },
   en: {
     header: {
