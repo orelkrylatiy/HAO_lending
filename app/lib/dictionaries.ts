@@ -1,5 +1,4 @@
 import { PROGRAMS, TEACHERS, REVIEWS, FAQ_ITEMS, JOURNEY_STEPS, KIDS_FEATURES, ADULT_FEATURES } from "@/app/lib/data";
-import { PROVIDER } from "@/app/lib/provider";
 
 // Helper to fully translate data:
 const PROGRAMS_EN = [
@@ -62,13 +61,6 @@ const ADULT_FEATURES_EN = [
   "Flexible schedule",
   "HSK 1–6 preparation",
 ];
-
-const PROVIDER_EN = {
-  ...PROVIDER,
-  title: "Service Provider:",
-  faqLabel: "FAQ",
-  faqHref: "#faq",
-};
 
 export const dictionaries = {
   ru: {
@@ -167,12 +159,6 @@ export const dictionaries = {
       JOURNEY_STEPS,
       KIDS_FEATURES,
       ADULT_FEATURES,
-      PROVIDER: {
-        ...PROVIDER,
-        title: "Поставщик услуг:",
-        faqLabel: "FAQ",
-        faqHref: "#faq",
-      },
     }
   },
   en: {
@@ -270,8 +256,7 @@ export const dictionaries = {
       FAQ_ITEMS: FAQ_ITEMS_EN, 
       JOURNEY_STEPS: JOURNEY_STEPS_EN, 
       KIDS_FEATURES: KIDS_FEATURES_EN, 
-      ADULT_FEATURES: ADULT_FEATURES_EN, 
-      PROVIDER: PROVIDER_EN 
+      ADULT_FEATURES: ADULT_FEATURES_EN,
     }
   }
 };

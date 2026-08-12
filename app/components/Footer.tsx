@@ -2,6 +2,7 @@ import { getDictionary, Lang } from "@/app/lib/dictionaries";
 import Image from "next/image";
 import { CONTACTS } from "@/app/lib/contacts";
 import { LEGAL_DOCUMENTS } from "@/app/lib/legal";
+import ProviderDetails from "./ProviderDetails";
 
 
 export default function Footer({ lang = "ru" }: { lang?: Lang }) {
@@ -10,15 +11,7 @@ export default function Footer({ lang = "ru" }: { lang?: Lang }) {
     <footer className="bg-[#F86704] py-10 md:py-12 rounded-t-[28px]">
       <div className="container-main">
         <div className="flex flex-col md:flex-row gap-8 md:gap-6">
-          <div className="flex-1">
-            <h3 className="font-bold text-white text-[18px] mb-4">{dict.data.PROVIDER.title}</h3>
-            <div className="flex flex-col gap-2 text-white/90 text-[15px]">
-              <div className="font-medium">{dict.data.PROVIDER.name}</div>
-              <div className="italic">{dict.data.PROVIDER.registration}</div>
-              <div>{dict.data.PROVIDER.address}</div>
-              <a href={dict.data.PROVIDER.faqHref} className="mt-2 text-white font-medium hover:text-white/80 transition-colors">{dict.data.PROVIDER.faqLabel}</a>
-            </div>
-          </div>
+          <ProviderDetails lang={lang} />
 
           <div className="flex-1">
             <h3 className="font-bold text-white text-[13px] uppercase tracking-wider mb-4">{dict.footer_sec.contacts}</h3>
