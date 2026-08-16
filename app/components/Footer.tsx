@@ -1,12 +1,13 @@
 import { getDictionary, Lang } from "@/app/lib/dictionaries";
 import Image from "next/image";
 import { CONTACTS } from "@/app/lib/contacts";
-import { LEGAL_DOCUMENTS } from "@/app/lib/legal";
+import { getLegalDocuments } from "@/app/lib/legal";
 import ProviderDetails from "./ProviderDetails";
 
 
 export default function Footer({ lang = "ru" }: { lang?: Lang }) {
   const dict = getDictionary(lang);
+  const legal = getLegalDocuments(lang);
   return (
     <footer className="bg-[#F86704] py-10 md:py-12 rounded-t-[28px]">
       <div className="container-main">
@@ -38,14 +39,14 @@ export default function Footer({ lang = "ru" }: { lang?: Lang }) {
           <div className="flex-1">
             <div className="flex flex-col gap-4">
               <a
-                href={LEGAL_DOCUMENTS.offer.href}
+                href={legal.offer.href}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white font-bold text-[15px] hover:text-white/80 transition-colors leading-tight"
                 dangerouslySetInnerHTML={{ __html: dict.footer_sec.terms.replace("/", "<br/>") }}
               />
               <a
-                href={LEGAL_DOCUMENTS.policy.href}
+                href={legal.policy.href}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white font-medium text-[14px] hover:text-white/80 transition-colors"

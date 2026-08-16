@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { getDictionary, Lang } from "@/app/lib/dictionaries";
-import { LEGAL_DOCUMENTS } from "@/app/lib/legal";
+import { getLegalDocuments } from "@/app/lib/legal";
 
 interface Props {
   isOpen: boolean;
@@ -13,6 +13,7 @@ interface Props {
 
 export default function LeadModal({ isOpen, onClose, title, lang = "ru" }: Props) {
   const dict = getDictionary(lang);
+  const legal = getLegalDocuments(lang);
   const modalTitle = title || dict.modal.title;
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -131,7 +132,7 @@ export default function LeadModal({ isOpen, onClose, title, lang = "ru" }: Props
               <span>
                 {lang === "ru" ? "Я ознакомлен(а) и согласен(на) с условиями " : "I have read and agree to the "}
                 <a
-                  href={LEGAL_DOCUMENTS.offer.href}
+                  href={legal.offer.href}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="font-semibold text-[#121212] underline underline-offset-2"
@@ -140,7 +141,7 @@ export default function LeadModal({ isOpen, onClose, title, lang = "ru" }: Props
                 </a>
                 {lang === "ru" ? " и " : " and the "}
                 <a
-                  href={LEGAL_DOCUMENTS.policy.href}
+                  href={legal.policy.href}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="font-semibold text-[#121212] underline underline-offset-2"

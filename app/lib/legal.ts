@@ -1,8 +1,9 @@
-export const LEGAL_DOCUMENTS = {
-  offer: {
-    href: "/docs/Hao Offer Language Practice Final Ru.pdf",
-  },
-  policy: {
-    href: "/docs/Hao Privacy Policy And Personal Data Consent Ru.pdf",
-  },
-} as const;
+import type { Lang } from "./dictionaries";
+
+export function getLegalDocuments(lang: Lang) {
+  const locale = lang === "en" ? "en" : "ru";
+  return {
+    offer: { href: `/docs/offer-${locale}.pdf` },
+    policy: { href: `/docs/privacy-${locale}.pdf` },
+  };
+}
