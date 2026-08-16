@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { getDictionary, Lang } from "@/app/lib/dictionaries";
@@ -8,6 +8,16 @@ import { getDictionary, Lang } from "@/app/lib/dictionaries";
 export default function Header({ lang = "ru", onSignup }: { lang?: Lang; onSignup?: () => void }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const dict = getDictionary(lang);
+
+  // Russian exists only on the .ru domain — no language switcher elsewhere.
+  const showLangSwitch = useSyncExternalStore(
+    () => () => {},
+    () =>
+      window.location.hostname.includes(".ru") ||
+      window.location.hostname === "localhost" ||
+      window.location.hostname === "127.0.0.1",
+    () => false,
+  );
 
   const handleSignupClick = () => {
     setMenuOpen(false);
@@ -36,11 +46,13 @@ export default function Header({ lang = "ru", onSignup }: { lang?: Lang; onSignu
 
         {/* CTA button & Lang switcher */}
         <div className="hidden lg:flex items-center gap-4">
-          <div className="flex gap-2 text-[14px] font-bold">
-            <Link href="/" className={lang === "ru" ? "text-[#F86704]" : "text-[#121212] hover:text-[#F86704]"}>RU</Link>
-            <span className="text-[#e8ddd5]">|</span>
-            <Link href="/en" className={lang === "en" ? "text-[#F86704]" : "text-[#121212] hover:text-[#F86704]"}>EN</Link>
-          </div>
+          {showLangSwitch && (
+            <div className="flex gap-2 text-[14px] font-bold">
+              <Link href="/" className={lang === "ru" ? "text-[#F86704]" : "text-[#121212] hover:text-[#F86704]"}>RU</Link>
+              <span className="text-[#e8ddd5]">|</span>
+              <Link href="/en" className={lang === "en" ? "text-[#F86704]" : "text-[#121212] hover:text-[#F86704]"}>EN</Link>
+            </div>
+          )}
           <button
             type="button"
             onClick={handleSignupClick}
@@ -67,11 +79,13 @@ export default function Header({ lang = "ru", onSignup }: { lang?: Lang; onSignu
       {/* Mobile menu */}
       {menuOpen && (
         <div className="relative z-10 lg:hidden bg-[#fcfbf7] border-t border-[#e8ddd5] px-5 py-5 flex flex-col gap-4">
-          <div className="flex justify-end gap-2 text-[14px] font-bold mb-2">
-            <Link href="/" className={lang === "ru" ? "text-[#F86704]" : "text-[#121212]"}>RU</Link>
-            <span className="text-[#e8ddd5]">|</span>
-            <Link href="/en" className={lang === "en" ? "text-[#F86704]" : "text-[#121212]"}>EN</Link>
-          </div>
+          {showLangSwitch && (
+            <div className="flex justify-end gap-2 text-[14px] font-bold mb-2">
+              <Link href="/" className={lang === "ru" ? "text-[#F86704]" : "text-[#121212]"}>RU</Link>
+              <span className="text-[#e8ddd5]">|</span>
+              <Link href="/en" className={lang === "en" ? "text-[#F86704]" : "text-[#121212]"}>EN</Link>
+            </div>
+          )}
           <a href="#programs" className="text-[#121212] font-semibold text-[15px]" onClick={() => setMenuOpen(false)}>{dict.nav.programs}</a>
           <a href="#teachers" className="text-[#121212] font-semibold text-[15px]" onClick={() => setMenuOpen(false)}>{dict.nav.teachers}</a>
           <a href="#reviews" className="text-[#121212] font-semibold text-[15px]" onClick={() => setMenuOpen(false)}>{dict.nav.reviews}</a>

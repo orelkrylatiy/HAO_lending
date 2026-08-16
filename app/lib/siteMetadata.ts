@@ -1,6 +1,16 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 
 const metadataBase = new URL("https://haochinese.ru");
+
+// Only the .ru domain serves both language versions (/, /en);
+// every other domain is English-only, same rule as ProviderDetails uses.
+export async function isRussianDomain(): Promise<boolean> {
+  const headerList = await headers();
+  const hostname = (headerList.get("host") ?? "").split(":")[0].toLowerCase();
+  // localhost — локальная разработка русской версии
+  return hostname === "localhost" || hostname === "127.0.0.1" || hostname.includes(".ru");
+}
 const defaultImage = {
   url: "/icon.svg",
   width: 512,
