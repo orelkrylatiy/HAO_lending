@@ -20,11 +20,32 @@ function escapeTelegramHtml(value: string): string {
     .replace(/>/g, "&gt;");
 }
 
-function fetchWithTimeout(url: string, init: RequestInit): Promise<Response> {
+// Интеграции ходят только на эти хосты и только по https — защита от SSRF
+// через подмену URL в переменных окружения. Хосты публичные, приватных
+// адресов в белом списке нет.
+const INTEGRATION_ALLOWLIST = new Set([
+  "api.telegram.org",
+  "script.google.com",
+  "script.googleusercontent.com",
+]);
+
+// Общий POST для интеграций: хост обязан пройти белый список.
+function postToIntegration(
+  url: URL,
+  body: unknown
+): Promise<Response> {
+  if (url.protocol !== "https:" || !INTEGRATION_ALLOWLIST.has(url.hostname)) {
+    throw new Error(`Integration host is not allowed: ${url.hostname}`);
+  }
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), INTEGRATION_TIMEOUT_MS);
 
-  return fetch(url, { ...init, signal: controller.signal }).finally(() => {
+  return fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+    signal: controller.signal,
+  }).finally(() => {
     clearTimeout(timeout);
   });
 }
@@ -44,25 +65,30 @@ async function sendTelegram(text: string): Promise<void> {
 
   if (!token || chatIds.length === 0) return;
 
+  // Хост жёстко задан базой URL, токен кодируется — подменить
+  // адрес через значение токена нельзя.
+  const telegramUrl = new URL(
+    `/bot${encodeURIComponent(token)}/sendMessage`,
+    "https://api.telegram.org"
+  );
+
   await Promise.allSettled(
     chatIds.map((chatId) =>
-      fetchWithTimeout(`https://api.telegram.org/bot${token}/sendMessage`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ chat_id: chatId, text, parse_mode: "HTML" }),
+      postToIntegration(telegramUrl, {
+        chat_id: chatId,
+        text,
+        parse_mode: "HTML",
       })
     )
   );
 }
 
 async function sendGoogleSheets(payload: Record<string, string>): Promise<void> {
-  const url = process.env.GOOGLE_SCRIPT_URL;
-  if (!url) return;
-  await fetchWithTimeout(url, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload),
-  });
+  const rawUrl = process.env.GOOGLE_SCRIPT_URL;
+  if (!rawUrl) return;
+  // URL из env валидируется белым списком хостов внутри postToIntegration.
+  const sheetsUrl = new URL(rawUrl);
+  await postToIntegration(sheetsUrl, payload);
 }
 
 export async function POST(req: NextRequest) {
