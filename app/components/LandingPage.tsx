@@ -9,6 +9,8 @@ import Footer from "./Footer";
 import JsonLd from "./JsonLd";
 import SignupClientBoundary from "./SignupClientBoundary";
 import CookieConsent from "./CookieConsent";
+import CustomCursor from "./ui/CustomCursor";
+import ScrollReveal from "./ui/ScrollReveal";
 import type { Lang } from "@/app/lib/dictionaries";
 
 export default function LandingPage({ lang = "ru" }: { lang?: Lang }) {
@@ -27,6 +29,8 @@ export default function LandingPage({ lang = "ru" }: { lang?: Lang }) {
       </main>
       <Footer lang={lang} />
       <CookieConsent lang={lang} />
+      <CustomCursor />
+      <ScrollReveal />
     </>
   );
 }

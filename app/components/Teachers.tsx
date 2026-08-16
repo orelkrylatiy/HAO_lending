@@ -19,7 +19,7 @@ export default function Teachers({ lang = "ru" }: { lang?: Lang }) {
   return (
     <section id="teachers" className="bg-[#fcfbf7] py-14 md:py-20 overflow-x-hidden">
       <div className="container-main">
-        <div className="text-center mb-10 md:mb-12 animate-fade-up">
+        <div className="text-center mb-10 md:mb-12" data-reveal="">
           <h2 className="text-[30px] sm:text-[38px] md:text-[44px] font-black text-[#121212] mb-5 leading-tight">
             {dict.teachers_sec.title}
           </h2>
@@ -29,7 +29,7 @@ export default function Teachers({ lang = "ru" }: { lang?: Lang }) {
         </div>
 
         {/* Wide desktop: 2 cards on xl, 3 cards on 2xl */}
-        <div className="hidden xl:grid xl:grid-cols-2 2xl:grid-cols-3 gap-5">
+        <div className="hidden xl:grid xl:grid-cols-2 2xl:grid-cols-3 gap-5" data-reveal="100">
           {visible.map((t, i) => (
             <div key={t.name + i} className="card-lift pointer-events-none bg-[#FFE9D2] rounded-2xl p-6 shadow-sm border border-[#f0e8e0] min-h-[560px] flex flex-col">
               <div className="mb-5">
@@ -42,6 +42,7 @@ export default function Teachers({ lang = "ru" }: { lang?: Lang }) {
                     src={t.img}
                     alt={t.name}
                     fill
+                    quality={90}
                     className={`object-cover ${t.objectPosition ?? "object-center"} relative z-10 pointer-events-none`}
                     sizes="(min-width: 1536px) 360px, 560px"
                   />
@@ -56,7 +57,7 @@ export default function Teachers({ lang = "ru" }: { lang?: Lang }) {
         </div>
 
         {/* Narrow and tablet: single card */}
-        <div className="xl:hidden max-w-3xl mx-auto">
+        <div className="xl:hidden max-w-3xl mx-auto" data-reveal="100">
           {(() => {
             const t = dict.data.TEACHERS[start];
             return (

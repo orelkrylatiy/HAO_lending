@@ -93,13 +93,13 @@ export default function Reviews({ lang = "ru" }: { lang?: Lang }) {
   return (
     <section id="reviews" className="bg-[#fff8f3] py-16 md:py-24">
       <div className="container-main">
-        <div className="text-center mb-10 md:mb-16">
+        <div className="text-center mb-10 md:mb-16" data-reveal="">
           <h2 className="text-[30px] sm:text-[38px] md:text-[44px] font-black text-[#121212] leading-tight mb-2 sm:mb-0">
             {dict.reviews_sec.title}
           </h2>
         </div>
 
-        <div className="hidden md:grid grid-cols-3 gap-5">
+        <div className="hidden md:grid grid-cols-3 gap-5" data-reveal="100">
           {reviews.map((review, index) => (
             <DesktopReviewCard
               key={`${review.name}-desktop`}
@@ -113,7 +113,7 @@ export default function Reviews({ lang = "ru" }: { lang?: Lang }) {
           ))}
         </div>
 
-        <div className="md:hidden">
+        <div className="md:hidden" data-reveal="100">
           {reviews.map((review, index) => (
             <MobileReviewCard
               key={`${review.name}-mobile`}

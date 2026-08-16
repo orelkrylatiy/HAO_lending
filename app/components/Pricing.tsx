@@ -22,7 +22,7 @@ export default function Pricing({ lang = "ru" }: { lang?: Lang }) {
   return (
     <section id="pricing" className="relative isolate bg-[#fcfbf7] py-16 md:py-20">
       <div className="container-main">
-        <div className="text-center mb-10 md:mb-14">
+        <div className="text-center mb-10 md:mb-14" data-reveal="">
           <h2 className="text-[26px] sm:text-[32px] md:text-[40px] font-black text-[#121212] mb-3">
             {dict.pricing_sec.title}
           </h2>
@@ -32,7 +32,7 @@ export default function Pricing({ lang = "ru" }: { lang?: Lang }) {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
-          <div className="relative z-10 bg-[#F86704] rounded-2xl p-6 md:p-8 shadow-lg flex flex-col">
+          <div className="relative z-10 bg-[#F86704] rounded-2xl p-6 md:p-8 shadow-lg flex flex-col" data-reveal="80">
             <div className="mb-5">
               <span className="inline-block px-3 py-1 rounded-full bg-white/20 text-white text-xs font-semibold mb-3">
                 {dict.pricing_sec.kids}
@@ -55,7 +55,7 @@ export default function Pricing({ lang = "ru" }: { lang?: Lang }) {
             </OpenSignupButton>
           </div>
 
-          <div className="relative z-10 bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-[#f0e8e0] flex flex-col">
+          <div className="relative z-10 bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-[#f0e8e0] flex flex-col" data-reveal="200">
             <div className="mb-5">
               <span className="badge-light mb-3">{dict.pricing_sec.adults}</span>
               <div className="text-3xl font-bold text-[#121212] mt-3 mb-1">
@@ -77,7 +77,7 @@ export default function Pricing({ lang = "ru" }: { lang?: Lang }) {
           </div>
         </div>
 
-        <div className="text-center mt-8">
+        <div className="text-center mt-8" data-reveal="320">
           <div className="inline-flex items-center gap-3 bg-[#F86704] rounded-xl px-6 py-3 border border-[#F86704] shadow-sm">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
               <circle cx="10" cy="10" r="10" fill="rgba(255,255,255,0.24)" />

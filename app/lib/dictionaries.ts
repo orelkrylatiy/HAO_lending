@@ -12,16 +12,16 @@ const PROGRAMS_EN = [
 
 const TEACHERS_EN = [
   { ...TEACHERS[0], name: "Siqin", role: "Certified Teacher", spec: "HSK and University Admission", desc: "Works with schoolchildren, students, and adults. Helps prepare for language exams and admission to Chinese universities. Students reach HSK 1 in 3 months with regular classes." },
-  { ...TEACHERS[1], name: "Peng Jing", role: "Certified Teacher", spec: "Exam Preparation", desc: "Works with children and high school students. Helps improve school grades and prepare for exams. Many students reach solid A and B grades in just one semester." },
+  { ...TEACHERS[1], name: "Li Wen", role: "Certified Teacher", spec: "Exam Preparation", desc: "Works with children and high school students. Helps improve school grades and prepare for exams. Many students reach solid A and B grades in just one semester." },
   { ...TEACHERS[2], name: "Alua", role: "Certified Teacher", spec: "Chinese for Kids", desc: "Works with children from 7 years old. Knows how to engage a child and make lessons fun and easy to understand. Kids start speaking from the very first lessons." },
   { ...TEACHERS[3], name: "Dai Wei", role: "Certified Teacher", spec: "Chinese for Work and Business", desc: "Works with adult students. Helps learn Chinese for work, business, and communicating with partners. After 2 months, students confidently use basic phrases at work." },
   { ...TEACHERS[4], name: "Kai Nin", role: "Qualified Teacher", spec: "HSK 2–3 and Spoken Language", desc: "Works with students and adults. Prepares for the HSK exam and helps learn the language for work. Students successfully pass HSK 2–3 and start speaking more confidently in just a few months." },
 ];
 
 const REVIEWS_EN = [
-  { ...REVIEWS[0], name: "Anna Gerner", role: "34 y.o., Moscow · HSK 6 Preparation", text: "I have been studying with a native speaker for two months now, and I am thrilled. My goal is HSK 6, Siqin and I chose a comfortable pace, and I feel real progress every lesson. The lessons are entirely in Chinese — scary at first, but then you realize it is the fastest track." },
+  { ...REVIEWS[0], name: "Anna Gerner", role: "34 y.o., Moscow · HSK 6 Preparation", text: "I have been studying with a native speaker for two months now, and I am thrilled. My goal is HSK 6, Kai Nin and I chose a comfortable pace, and I feel real progress every lesson. The lessons are entirely in Chinese — scary at first, but then you realize it is the fastest track." },
   { ...REVIEWS[1], name: "Nikita", role: "28 y.o., St. Petersburg · One-on-one classes", text: "I deliberately looked for a native speaker — I didn't want to study from textbooks without live speech. After a trial lesson with Dai Wei, I didn't hesitate long. He is responsive, attentive, and a demanding teacher. After a month, I started understanding spoken language much better." },
-  { ...REVIEWS[2], name: "Elena Foronova", role: "41 y.o., Yekaterinburg · HSK 4 Preparation", text: "I study with Siqin, preparing for HSK 4. The lessons are structured, the pace is comfortable — and most importantly, I hear my progress. I've always wanted to study with a native speaker, and now I understand why: it's a completely different level of immersion." },
+  { ...REVIEWS[2], name: "Elena Foronova", role: "41 y.o., Yekaterinburg · HSK 4 Preparation", text: "I study with Kai Nin, preparing for HSK 4. The lessons are structured, the pace is comfortable — and most importantly, I hear my progress. I've always wanted to study with a native speaker, and now I understand why: it's a completely different level of immersion." },
   { ...REVIEWS[3], name: "Alexandra", role: "29 y.o., Kazan · Speaking practice", text: "I came with a specific request: improve my speaking skills and prepare for an oral exam. Over a month in, and there's a noticeable result: I speak more confidently, freeze less searching for words. The platform is convenient, I don't miss classes." },
   { ...REVIEWS[4], name: "Timur", role: "Artem's dad, Ufa · Chinese for kids, 7 y.o.", text: "Alua found an approach to my son from the very first lesson. She tailored the material to his age and interests — the lessons are positive, dynamic, without boredom. Artem reminds me himself that there is a lesson today. For a seven-year-old child, this is the best review you can give." },
   { ...REVIEWS[5], name: "Anastasia", role: "25 y.o., Novosibirsk · Classes with Kai Nin", text: "I really like how the lessons are structured: each session begins with a review of past material, so it doesn't fly out of your head after a week. Kai Nin is friendly, attentive — and keeps the pace. The lessons are a pleasure." },
@@ -98,7 +98,7 @@ export const dictionaries = {
       foryou: "под вашу цель",
       samelevel: "с одним уровнем",
       more: "Подробнее",
-      teacher_name: "Сицин",
+      teacher_name: "Пэн Цзин",
       teacher_spec: "HSK и поступление в вузы"
     },
     teachers_sec: {
@@ -202,7 +202,7 @@ export const dictionaries = {
       foryou: "for your goal",
       samelevel: "same level",
       more: "Learn more",
-      teacher_name: "Siqin",
+      teacher_name: "Peng Jing",
       teacher_spec: "HSK and university admission"
     },
     teachers_sec: {

@@ -229,4 +229,59 @@ button, a, input, select, textarea {
     transform: translateY(-2px);
     box-shadow: 0 10px 20px rgba(61, 43, 31, 0.12);
   }
+
+  /* Кастомный курсор (CustomCursor.tsx) */
+  .custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    pointer-events: none;
+    border-radius: 9999px;
+    opacity: 0;
+    box-shadow: 0 6px 18px rgba(61, 43, 31, 0.28);
+    will-change: transform, opacity;
+  }
+
+  .has-custom-cursor,
+  .has-custom-cursor * {
+    cursor: none;
+  }
+
+  /* В полях ввода возвращаем нативный курсор */
+  .has-custom-cursor input,
+  .has-custom-cursor textarea,
+  .has-custom-cursor select {
+    cursor: auto;
+  }
+
+  @media (pointer: coarse) {
+    .custom-cursor {
+      display: none;
+    }
+  }
+
+  /* Появление блоков при скролле (ScrollReveal.tsx).
+     Активируется только с JS через класс reveal-ready — без скриптов контент виден. */
+  .reveal-ready [data-reveal] {
+    opacity: 0;
+    transform: translateY(26px);
+    transition:
+      opacity 0.65s ease-out,
+      transform 0.65s ease-out,
+      background-color 0.3s ease;
+  }
+
+  .reveal-ready [data-reveal].is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal-ready [data-reveal] {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
 }

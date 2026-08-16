@@ -6,7 +6,7 @@ export default function FAQ({ lang = "ru" }: { lang?: Lang }) {
   return (
     <section id="faq" className="bg-[#fcfbf7] py-14 md:py-16">
       <div className="container-main">
-        <div className="text-center mb-8 md:mb-10">
+        <div className="text-center mb-8 md:mb-10" data-reveal="">
           <h2 className="text-[30px] sm:text-[38px] md:text-[48px] font-black text-[#121212] mb-10 md:mb-14 text-center leading-tight">
             {dict.faq_sec.title}
           </h2>
@@ -17,6 +17,7 @@ export default function FAQ({ lang = "ru" }: { lang?: Lang }) {
             <details
               key={i}
               className="group rounded-2xl bg-[#FFE9D2]/60 open:bg-[#FFE9D2] hover:bg-[#FFE9D2] transition-colors"
+              data-reveal={String(i * 80)}
             >
               <summary className="list-none w-full flex items-center justify-between px-6 py-5 text-left gap-4 cursor-pointer">
                 <span className="font-bold text-[#121212] text-[14px] md:text-[16px]">

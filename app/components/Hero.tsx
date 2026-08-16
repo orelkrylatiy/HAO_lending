@@ -47,7 +47,7 @@ export default function Hero({ lang = "ru" }: { lang?: Lang }) {
               </div>
             </div>
 
-            <div className="relative flex-1 flex flex-col lg:flex-row items-center justify-end overflow-hidden min-h-[300px] lg:min-h-[520px] px-4 lg:px-0 pt-4 lg:pt-0 pointer-events-none">
+            <div className="relative flex-1 flex flex-col lg:flex-row items-center lg:items-end justify-end overflow-hidden min-h-[300px] lg:min-h-[520px] px-4 lg:px-0 pt-4 lg:pt-0 pointer-events-none">
               <div className="order-2 w-full flex justify-center lg:absolute lg:top-10 lg:right-10 lg:order-1 lg:w-auto lg:justify-end gap-4 lg:gap-6 z-10 mt-5 lg:mt-0 pointer-events-none">
                 <div className="flex flex-col items-center gap-2 animate-fade-up-delay-1">
                   <Image src="/icons/icon-education.svg" alt={dict.hero.benefit1.replace("\n", " ")} width={86} height={80} className="w-[64px] md:w-[78px] lg:w-[86px] h-auto pointer-events-none" />
