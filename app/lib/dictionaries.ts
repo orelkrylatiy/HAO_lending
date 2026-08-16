@@ -151,6 +151,12 @@ export const dictionaries = {
       error_send: "Ошибка отправки",
       error_conn: "Ошибка соединения"
     },
+    cookies: {
+      aria: "Уведомление об использовании cookie",
+      text: "Мы используем cookie-файлы, чтобы сайт работал удобнее. Продолжая пользоваться сайтом, вы соглашаетесь с",
+      link: "политикой конфиденциальности",
+      accept: "Принять"
+    },
     data: {
       PROGRAMS,
       TEACHERS,
@@ -249,8 +255,14 @@ export const dictionaries = {
       error_send: "Submit error",
       error_conn: "Connection error"
     },
-    data: { 
-      PROGRAMS: PROGRAMS_EN, 
+    cookies: {
+      aria: "Cookie usage notice",
+      text: "We use cookies to make the site work better. By continuing to use the site, you agree to our",
+      link: "privacy policy",
+      accept: "Accept"
+    },
+    data: {
+      PROGRAMS: PROGRAMS_EN,
       TEACHERS: TEACHERS_EN, 
       REVIEWS: REVIEWS_EN, 
       FAQ_ITEMS: FAQ_ITEMS_EN, 

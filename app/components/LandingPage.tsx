@@ -7,6 +7,7 @@ import Pricing from "./Pricing";
 import FAQ from "./FAQ";
 import Footer from "./Footer";
 import SignupClientBoundary from "./SignupClientBoundary";
+import CookieConsent from "./CookieConsent";
 import type { Lang } from "@/app/lib/dictionaries";
 
 export default function LandingPage({ lang = "ru" }: { lang?: Lang }) {
@@ -23,6 +24,7 @@ export default function LandingPage({ lang = "ru" }: { lang?: Lang }) {
         <FAQ lang={lang} />
       </main>
       <Footer lang={lang} />
+      <CookieConsent lang={lang} />
     </>
   );
 }
