@@ -46,3 +46,6 @@ next-env.d.ts
 # local browser/debug artifacts
 .edge-cdp-profile/
 .next-dev*.log
+
+# mimosa security-scan artifacts
+.mimosa/
