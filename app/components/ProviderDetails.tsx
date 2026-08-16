@@ -18,9 +18,13 @@ const PROVIDER_EN = {
 export default function ProviderDetails({ lang }: { lang: Lang }) {
   // Серверный снапшот = true: статический HTML содержит российского поставщика
   // (основной домен .ru), на остальных доменах клиент подменит после гидратации.
+  // localhost/127.0.0.1 — локальная разработка русской версии (как в siteMetadata).
   const isRussianDomain = useSyncExternalStore(
     () => () => {},
-    () => window.location.hostname.includes(".ru"),
+    () =>
+      window.location.hostname === "localhost" ||
+      window.location.hostname === "127.0.0.1" ||
+      window.location.hostname.includes(".ru"),
     () => true,
   );
 
