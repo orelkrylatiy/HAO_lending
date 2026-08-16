@@ -22,7 +22,7 @@ export default function Programs({ lang = "ru" }: { lang?: Lang }) {
         </div>
 
         {/* Desktop 3-col layout */}
-        <div className="hidden md:grid grid-cols-[280px_1fr_270px] gap-6 items-stretch">
+        <div className="hidden lg:grid grid-cols-[280px_1fr_270px] gap-6 items-stretch">
           <div className="card-lift bg-[#FFE9D2] rounded-2xl overflow-hidden flex flex-col">
             <div className="flex-1 relative min-h-75">
               <Image src="/images/teachers/teacher-siqin.webp" alt={dict.programs_sec.teacher_name} fill className="object-cover object-center pointer-events-none" sizes="280px" />
@@ -78,7 +78,7 @@ export default function Programs({ lang = "ru" }: { lang?: Lang }) {
         </div>
 
         {/* Mobile: grid of cards */}
-        <div className="md:hidden grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="lg:hidden grid grid-cols-1 sm:grid-cols-2 gap-4">
           {dict.data.PROGRAMS.map((p, i) => (
             <div key={p.id} className={`card-lift rounded-2xl p-5 flex flex-col gap-3 ${i === 0 ? "bg-[#F86704] text-white" : "bg-white border border-[#f0e8e0]"}`}>
               <span className={`text-[11px] font-bold px-2.5 py-0.5 rounded-full self-start ${i === 0 ? "bg-white/20 text-white" : "bg-[#FFE9D2] text-[#F86704]"}`}>
