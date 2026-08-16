@@ -12,7 +12,7 @@ npm run dev
 
 | What | File |
 |---|---|
-| Contacts | `.env.local` |
+| Contacts | `app/lib/contacts.ts` |
 | Content and data | `app/lib/data.ts` |
 | Telegram and Google Sheets | `.env.local` |
 | Teacher photos | `public/images/teachers/*.webp` |
@@ -20,17 +20,7 @@ npm run dev
 
 ## Public Contacts
 
-Fill these values in `.env.local`:
-
-```env
-NEXT_PUBLIC_CONTACT_PHONE=+7 (900) 123-45-67
-NEXT_PUBLIC_CONTACT_PHONE_RAW=+79001234567
-NEXT_PUBLIC_CONTACT_EMAIL=hello@example.com
-NEXT_PUBLIC_CONTACT_TELEGRAM=https://t.me/your_username
-NEXT_PUBLIC_CONTACT_WHATSAPP=https://wa.me/79001234567
-```
-
-Restart the dev server after changing `NEXT_PUBLIC_*`.
+Contacts (phone, email, Telegram, WhatsApp) are public site content — edit them directly in `app/lib/contacts.ts`. No env vars and no dev-server restart needed.
 
 ## Telegram
 

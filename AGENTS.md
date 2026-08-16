@@ -15,7 +15,7 @@
 | Что менять | Файл |
 |---|---|
 | Тексты: отзывы, преподаватели, FAQ, шаги, программы, тарифы | `app/lib/data.ts` |
-| Контакты (телефон, email, Telegram, WhatsApp) | `.env.local` → `NEXT_PUBLIC_CONTACT_*` |
+| Контакты (телефон, email, Telegram, WhatsApp) | `app/lib/contacts.ts` |
 | Обработка формы (Telegram, Google Sheets) | `app/api/submit/route.ts` |
 | Глобальные стили и CSS-компоненты | `app/globals.css` |
 | Компоненты страницы | `app/components/` |
@@ -30,7 +30,7 @@
 
 ### Контент
 - Все тексты, массивы данных и конфигурация секций — только в `app/lib/data.ts`.
-- Контактные данные — только через `app/lib/contacts.ts` (читает из `process.env`), не хардкоди в JSX.
+- Контактные данные — только в `app/lib/contacts.ts`, не раскидывай по JSX. В env остаются только серверные секреты (Telegram-бот, Google Sheets).
 - Не трогай `.env.local` — им управляет владелец проекта.
 
 ### Код
@@ -64,7 +64,7 @@
 
 **Изменить тариф/программу** → `app/lib/data.ts`, массивы `PROGRAMS` / `PRICING`.
 
-**Изменить контакты** → `.env.local`, переменные `NEXT_PUBLIC_CONTACT_*`.
+**Изменить контакты** → `app/lib/contacts.ts`.
 
 **Добавить получателя уведомлений** → `.env.local`:
 ```
