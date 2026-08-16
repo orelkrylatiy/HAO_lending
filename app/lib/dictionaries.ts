@@ -245,7 +245,7 @@ export const dictionaries = {
       title: "Sign up for counseling",
       name: "Name",
       email: "Email (optional)",
-      phone_placeholder: "+1 (000) 000-0000",
+      phone_placeholder: "+00 000 000 000",
       submit: "Sign Up",
       sending: "Sending...",
       agreement: "By clicking \"Sign Up\" you agree to our privacy policy",

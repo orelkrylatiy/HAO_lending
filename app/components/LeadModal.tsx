@@ -17,7 +17,7 @@ export default function LeadModal({ isOpen, onClose, title, lang = "ru" }: Props
   const modalTitle = title || dict.modal.title;
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState(lang === "en" ? "+1 " : "+7 ");
+  const [phone, setPhone] = useState(lang === "en" ? "" : "+7 ");
   const [isAgreementChecked, setIsAgreementChecked] = useState(false);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
@@ -153,7 +153,7 @@ export default function LeadModal({ isOpen, onClose, title, lang = "ru" }: Props
               className="w-full bg-white rounded-xl px-4 py-4 text-[15px] font-medium text-[#121212] placeholder-[#a09080] outline-none border-2 border-transparent focus:border-[#F86704] transition-colors"
             />
             <div className="flex items-center gap-2 bg-white rounded-xl px-4 py-4 border-2 border-transparent focus-within:border-[#F86704] transition-colors">
-              <span className="text-[13px] font-semibold text-[#6b5c4e]">{lang === "en" ? "US" : "RU"}</span>
+              {lang !== "en" && <span className="text-[13px] font-semibold text-[#6b5c4e]">RU</span>}
               <input
                 type="tel"
                 value={phone}
