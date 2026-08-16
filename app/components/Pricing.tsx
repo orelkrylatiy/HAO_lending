@@ -40,7 +40,7 @@ export default function Pricing({ lang = "ru" }: { lang?: Lang }) {
               <div className="text-3xl font-bold text-white mb-1">
                 {dict.pricing_sec.from} <span className="font-black">980 ₽</span>
               </div>
-              <div className="text-white/80 text-sm">{dict.pricing_sec.per_lesson}</div>
+              <div className="text-white text-sm font-medium">{dict.pricing_sec.per_lesson}</div>
             </div>
             <ul className="flex flex-col gap-3 mb-8 flex-1">
               {dict.data.KIDS_FEATURES.map((feature) => (
@@ -50,7 +50,7 @@ export default function Pricing({ lang = "ru" }: { lang?: Lang }) {
                 </li>
               ))}
             </ul>
-            <OpenSignupButton className="relative z-10 w-full py-4 rounded-full bg-white text-[#F86704] font-bold text-[16px] text-center hover:bg-[#fff5ee] transition-colors">
+            <OpenSignupButton className="relative z-10 w-full py-4 rounded-full bg-white text-[#C24E00] font-bold text-[16px] text-center hover:bg-[#fff5ee] transition-colors">
               {dict.pricing_sec.cta}
             </OpenSignupButton>
           </div>
@@ -59,7 +59,7 @@ export default function Pricing({ lang = "ru" }: { lang?: Lang }) {
             <div className="mb-5">
               <span className="badge-light mb-3">{dict.pricing_sec.adults}</span>
               <div className="text-3xl font-bold text-[#121212] mt-3 mb-1">
-                {dict.pricing_sec.from} <span className="text-[#F86704]">1 250 ₽</span>
+                {dict.pricing_sec.from} <span className="text-[#C24E00]">1 250 ₽</span>
               </div>
               <div className="text-[#6b5c4e] text-sm">{dict.pricing_sec.per_lesson}</div>
             </div>
@@ -71,7 +71,7 @@ export default function Pricing({ lang = "ru" }: { lang?: Lang }) {
                 </li>
               ))}
             </ul>
-            <OpenSignupButton className="relative z-10 w-full py-3 rounded-full border-2 border-[#F86704] text-[#F86704] font-semibold text-center hover:bg-[#FFE9D2] transition-colors">
+            <OpenSignupButton className="relative z-10 w-full py-3 rounded-full border-2 border-[#F86704] text-[#C24E00] font-semibold text-center hover:bg-[#FFE9D2] transition-colors">
               {dict.pricing_sec.cta}
             </OpenSignupButton>
           </div>

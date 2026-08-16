@@ -6,7 +6,7 @@ export default function Journey({ lang = "ru" }: { lang?: Lang }) {
     <section id="journey" className="bg-[#fcfbf7] py-16 md:py-20">
       <div className="container-main">
         <div className="text-center mb-10 md:mb-14">
-          <p className="text-[#F86704] text-sm font-bold uppercase tracking-wider mb-2">{dict.journey.tag}</p>
+          <p className="text-[#C24E00] text-sm font-bold uppercase tracking-wider mb-2">{dict.journey.tag}</p>
           <h2 className="text-[34px] md:text-[48px] font-black text-[#121212] leading-tight">{dict.journey.title}</h2>
         </div>
 

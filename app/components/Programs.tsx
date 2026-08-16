@@ -81,7 +81,7 @@ export default function Programs({ lang = "ru" }: { lang?: Lang }) {
         <div className="lg:hidden grid grid-cols-1 sm:grid-cols-2 gap-4">
           {dict.data.PROGRAMS.map((p, i) => (
             <div key={p.id} className={`card-lift rounded-2xl p-5 flex flex-col gap-3 ${i === 0 ? "bg-[#F86704] text-white" : "bg-white border border-[#f0e8e0]"}`}>
-              <span className={`text-[11px] font-bold px-2.5 py-0.5 rounded-full self-start ${i === 0 ? "bg-white/20 text-white" : "bg-[#FFE9D2] text-[#F86704]"}`}>
+              <span className={`text-[11px] font-bold px-2.5 py-0.5 rounded-full self-start ${i === 0 ? "bg-[#C24E00] text-white" : "bg-[#FFE9D2] text-[#C24E00]"}`}>
                 {p.tag}
               </span>
               <h3 className={`font-black text-[17px] leading-tight ${i === 0 ? "text-white" : "text-[#121212]"}`}>{p.title}</h3>

@@ -23,6 +23,9 @@
 | Фото преподавателей | `public/images/teachers/*.webp` |
 | Фото в отзывах | `public/images/reviews/*.webp` |
 | Переменные окружения (шаблон) | `.env.local.example` |
+| Шрифты Montserrat (WOFF2, кириллица+латиница) | `app/fonts/` (пересборка из TTF: `scripts/subset-fonts.sh`) |
+| Разметка Schema.org (Organization, FAQPage) | `app/components/JsonLd.tsx` |
+| Редирект www→основной домен, security-заголовки | `proxy.ts`, `next.config.ts` |
 
 ---
 

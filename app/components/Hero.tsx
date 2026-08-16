@@ -16,7 +16,7 @@ export default function Hero({ lang = "ru" }: { lang?: Lang }) {
                 <h1 className="text-[50px] sm:text-[68px] md:text-[82px] lg:text-[90px] font-black text-[#121212] leading-[0.98] mb-5 md:mb-7 tracking-tight animate-fade-up">
                   {dict.hero.title1}<br />{dict.hero.title2}
                 </h1>
-                <p className="text-[#F86704] text-[22px] md:text-[28px] lg:text-[32px] font-bold leading-tight mb-3 md:mb-5 whitespace-pre-line animate-fade-up-delay-1">
+                <p className="text-[#C24E00] text-[22px] md:text-[28px] lg:text-[32px] font-bold leading-tight mb-3 md:mb-5 whitespace-pre-line animate-fade-up-delay-1">
                   {dict.hero.subtitle}
                 </p>
                 <p className="text-[#3d2b1f] text-[16px] md:text-[18px] font-medium mb-4 md:mb-7 animate-fade-up-delay-2">
@@ -35,7 +35,7 @@ export default function Hero({ lang = "ru" }: { lang?: Lang }) {
                 </OpenSignupButton>
                 <ScrollToButton
                   targetId="programs"
-                  className="button-lift relative z-10 flex items-center justify-between gap-4 bg-white text-[#F86704] font-semibold text-[15px] md:text-[18px] px-7 py-4 md:py-5 rounded-2xl hover:bg-white/80 transition-colors"
+                  className="button-lift relative z-10 flex items-center justify-between gap-4 bg-white text-[#C24E00] font-semibold text-[15px] md:text-[18px] px-7 py-4 md:py-5 rounded-2xl hover:bg-white/80 transition-colors"
                 >
                   <span>{dict.hero.programs}</span>
                   <span className="flex-shrink-0">

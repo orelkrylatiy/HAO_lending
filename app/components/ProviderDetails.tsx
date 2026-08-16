@@ -5,7 +5,7 @@ import type { Lang } from "@/app/lib/dictionaries";
 
 const PROVIDER_RU = {
   name: "ИП Хелиспали К.Г.",
-  registration: "ИНН/ОГРНИП. 667302881017/308667334600021",
+  registration: "ИНН 667302881017 / ОГРНИП 308667334600021",
   address: "г. Екатеринбург",
 };
 
@@ -16,10 +16,12 @@ const PROVIDER_EN = {
 };
 
 export default function ProviderDetails({ lang }: { lang: Lang }) {
+  // Серверный снапшот = true: статический HTML содержит российского поставщика
+  // (основной домен .ru), на остальных доменах клиент подменит после гидратации.
   const isRussianDomain = useSyncExternalStore(
     () => () => {},
     () => window.location.hostname.includes(".ru"),
-    () => false,
+    () => true,
   );
 
   const provider = isRussianDomain ? PROVIDER_RU : PROVIDER_EN;

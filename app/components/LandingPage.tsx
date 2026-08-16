@@ -6,6 +6,7 @@ import Reviews from "./Reviews";
 import Pricing from "./Pricing";
 import FAQ from "./FAQ";
 import Footer from "./Footer";
+import JsonLd from "./JsonLd";
 import SignupClientBoundary from "./SignupClientBoundary";
 import CookieConsent from "./CookieConsent";
 import type { Lang } from "@/app/lib/dictionaries";
@@ -13,6 +14,7 @@ import type { Lang } from "@/app/lib/dictionaries";
 export default function LandingPage({ lang = "ru" }: { lang?: Lang }) {
   return (
     <>
+      <JsonLd lang={lang} />
       <SignupClientBoundary lang={lang} />
       <main>
         <Hero lang={lang} />

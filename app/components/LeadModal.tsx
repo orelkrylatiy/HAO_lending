@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { getDictionary, Lang } from "@/app/lib/dictionaries";
 import { getLegalDocuments } from "@/app/lib/legal";
 
@@ -21,6 +21,46 @@ export default function LeadModal({ isOpen, onClose, title, lang = "ru" }: Props
   const [isAgreementChecked, setIsAgreementChecked] = useState(false);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const firstInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        onClose();
+        return;
+      }
+      if (event.key === "Tab" && dialogRef.current) {
+        const focusable = dialogRef.current.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        );
+        if (focusable.length === 0) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
+    };
+
+    document.addEventListener("keydown", onKeyDown);
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const previouslyFocused = document.activeElement as HTMLElement | null;
+    firstInputRef.current?.focus();
+
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      document.body.style.overflow = previousOverflow;
+      previouslyFocused?.focus();
+    };
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
@@ -55,6 +95,10 @@ export default function LeadModal({ isOpen, onClose, title, lang = "ru" }: Props
       <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
 
       <div
+        ref={dialogRef}
+        role="dialog"
+        aria-modal="true"
+        aria-label={modalTitle}
         className="relative bg-[#FFE9D2] rounded-[28px] p-7 md:p-9 w-full max-w-[420px] shadow-2xl"
         onClick={(event) => event.stopPropagation()}
       >
@@ -93,6 +137,7 @@ export default function LeadModal({ isOpen, onClose, title, lang = "ru" }: Props
         ) : (
           <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
             <input
+              ref={firstInputRef}
               type="text"
               placeholder={dict.modal.name}
               value={name}

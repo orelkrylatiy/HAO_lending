@@ -38,19 +38,19 @@ export default function Header({ lang = "ru", onSignup }: { lang?: Lang; onSignu
 
         {/* Desktop nav */}
         <nav className="hidden lg:flex items-center gap-8 text-[14px] font-semibold text-[#121212]">
-          <a href="#programs" className="hover:text-[#F86704] transition-colors">{dict.nav.programs}</a>
-          <a href="#teachers" className="hover:text-[#F86704] transition-colors">{dict.nav.teachers}</a>
-          <a href="#reviews" className="hover:text-[#F86704] transition-colors">{dict.nav.reviews}</a>
-          <a href="#pricing" className="hover:text-[#F86704] transition-colors">{dict.nav.pricing}</a>
+          <a href="#programs" className="hover:text-[#C24E00] transition-colors">{dict.nav.programs}</a>
+          <a href="#teachers" className="hover:text-[#C24E00] transition-colors">{dict.nav.teachers}</a>
+          <a href="#reviews" className="hover:text-[#C24E00] transition-colors">{dict.nav.reviews}</a>
+          <a href="#pricing" className="hover:text-[#C24E00] transition-colors">{dict.nav.pricing}</a>
         </nav>
 
         {/* CTA button & Lang switcher */}
         <div className="hidden lg:flex items-center gap-4">
           {showLangSwitch && (
             <div className="flex gap-2 text-[14px] font-bold">
-              <Link href="/" className={lang === "ru" ? "text-[#F86704]" : "text-[#121212] hover:text-[#F86704]"}>RU</Link>
+              <Link href="/" className={lang === "ru" ? "text-[#C24E00]" : "text-[#121212] hover:text-[#C24E00]"}>RU</Link>
               <span className="text-[#e8ddd5]">|</span>
-              <Link href="/en" className={lang === "en" ? "text-[#F86704]" : "text-[#121212] hover:text-[#F86704]"}>EN</Link>
+              <Link href="/en" className={lang === "en" ? "text-[#C24E00]" : "text-[#121212] hover:text-[#C24E00]"}>EN</Link>
             </div>
           )}
           <button
@@ -81,9 +81,9 @@ export default function Header({ lang = "ru", onSignup }: { lang?: Lang; onSignu
         <div className="relative z-10 lg:hidden bg-[#fcfbf7] border-t border-[#e8ddd5] px-5 py-5 flex flex-col gap-4">
           {showLangSwitch && (
             <div className="flex justify-end gap-2 text-[14px] font-bold mb-2">
-              <Link href="/" className={lang === "ru" ? "text-[#F86704]" : "text-[#121212]"}>RU</Link>
+              <Link href="/" className={lang === "ru" ? "text-[#C24E00]" : "text-[#121212]"}>RU</Link>
               <span className="text-[#e8ddd5]">|</span>
-              <Link href="/en" className={lang === "en" ? "text-[#F86704]" : "text-[#121212]"}>EN</Link>
+              <Link href="/en" className={lang === "en" ? "text-[#C24E00]" : "text-[#121212]"}>EN</Link>
             </div>
           )}
           <a href="#programs" className="text-[#121212] font-semibold text-[15px]" onClick={() => setMenuOpen(false)}>{dict.nav.programs}</a>

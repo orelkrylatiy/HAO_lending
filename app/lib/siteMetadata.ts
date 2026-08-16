@@ -12,9 +12,9 @@ export async function isRussianDomain(): Promise<boolean> {
   return hostname === "localhost" || hostname === "127.0.0.1" || hostname.includes(".ru");
 }
 const defaultImage = {
-  url: "/icon.svg",
-  width: 512,
-  height: 512,
+  url: "/og-image.png",
+  width: 1200,
+  height: 630,
 };
 
 export function getRuMetadata(): Metadata {
@@ -47,7 +47,7 @@ export function getRuMetadata(): Metadata {
       card: "summary_large_image",
       title: "HAO — школа китайского языка",
       description: "Эффективные онлайн-курсы китайского языка: от нуля до уверенного общения, гибкие форматы и график.",
-      images: ["/icon.svg"],
+      images: ["/og-image.png"],
     },
   };
 }
@@ -73,7 +73,9 @@ export function getEnMetadata(): Metadata {
       type: "website",
       images: [
         {
-          ...defaultImage,
+          url: "/og-image-en.png",
+          width: 1200,
+          height: 630,
           alt: "HAO — Chinese Language School",
         },
       ],
@@ -82,7 +84,7 @@ export function getEnMetadata(): Metadata {
       card: "summary_large_image",
       title: "HAO — Chinese Language School",
       description: "Effective online Chinese language courses: from zero to fluent communication, flexible formats and schedule.",
-      images: ["/icon.svg"],
+      images: ["/og-image-en.png"],
     },
   };
 }
