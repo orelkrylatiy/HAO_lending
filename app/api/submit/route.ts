@@ -25,6 +25,13 @@ const checkRateLimit = createRateLimiter({
 
 type LogFields = Record<string, string | number | boolean | null | undefined>;
 
+type TelegramResult = {
+  configured: boolean;
+  sent: number;
+  failed: number;
+  errors: string[];
+};
+
 function logEvent(level: "info" | "warn" | "error", event: string, fields: LogFields = {}) {
   const line = JSON.stringify({
     timestamp: new Date().toISOString(),
@@ -91,12 +98,12 @@ function getTelegramChatIds(): string[] {
     .filter(Boolean);
 }
 
-async function sendTelegram(text: string): Promise<{ configured: boolean; sent: number; failed: number }> {
+async function sendTelegram(text: string): Promise<TelegramResult> {
   const token = process.env.TELEGRAM_BOT_TOKEN;
   const chatIds = getTelegramChatIds();
 
   if (!token || chatIds.length === 0) {
-    return { configured: false, sent: 0, failed: 0 };
+    return { configured: false, sent: 0, failed: 0, errors: [] };
   }
 
   const telegramUrl = new URL(
@@ -104,22 +111,25 @@ async function sendTelegram(text: string): Promise<{ configured: boolean; sent: 
     "https://api.telegram.org",
   );
 
-  const results = await Promise.allSettled(
-    chatIds.map((chatId) =>
-      postJsonToIntegration(telegramUrl, {
+  let sent = 0;
+  let failed = 0;
+  const errors: string[] = [];
+
+  for (const chatId of chatIds) {
+    try {
+      await postJsonToIntegration(telegramUrl, {
         chat_id: chatId,
         text,
         parse_mode: "HTML",
-      }),
-    ),
-  );
+      });
+      sent += 1;
+    } catch (error) {
+      failed += 1;
+      errors.push(errorMessage(error));
+    }
+  }
 
-  const failed = results.filter((result) => result.status === "rejected").length;
-  return {
-    configured: true,
-    sent: results.length - failed,
-    failed,
-  };
+  return { configured: true, sent, failed, errors };
 }
 
 async function persistToGoogleSheets(payload: Record<string, string>): Promise<void> {
@@ -133,16 +143,20 @@ export async function POST(req: NextRequest) {
   const leadId = crypto.randomUUID();
   const startedAt = Date.now();
 
-  const contentLength = Number(req.headers.get("content-length") ?? 0);
-  if (Number.isFinite(contentLength) && contentLength > MAX_REQUEST_BYTES) {
-    logEvent("warn", "lead.rejected", { leadId, reason: "body_too_large", contentLength });
-    return NextResponse.json({ error: "Слишком большой запрос" }, { status: 413 });
-  }
-
   const contentType = req.headers.get("content-type") ?? "";
   if (!contentType.toLowerCase().startsWith("application/json")) {
     logEvent("warn", "lead.rejected", { leadId, reason: "unsupported_content_type" });
     return NextResponse.json({ error: "Ожидается JSON" }, { status: 415 });
+  }
+
+  const declaredContentLength = Number(req.headers.get("content-length") ?? 0);
+  if (Number.isFinite(declaredContentLength) && declaredContentLength > MAX_REQUEST_BYTES) {
+    logEvent("warn", "lead.rejected", {
+      leadId,
+      reason: "body_too_large",
+      contentLength: declaredContentLength,
+    });
+    return NextResponse.json({ error: "Слишком большой запрос" }, { status: 413 });
   }
 
   const clientKey = getClientKey(req);
@@ -158,9 +172,22 @@ export async function POST(req: NextRequest) {
     );
   }
 
+  let rawBody: string;
+  try {
+    rawBody = await req.text();
+  } catch {
+    logEvent("warn", "lead.rejected", { leadId, reason: "body_read_failed" });
+    return NextResponse.json({ error: "Некорректный запрос" }, { status: 400 });
+  }
+
+  if (Buffer.byteLength(rawBody, "utf8") > MAX_REQUEST_BYTES) {
+    logEvent("warn", "lead.rejected", { leadId, reason: "body_too_large" });
+    return NextResponse.json({ error: "Слишком большой запрос" }, { status: 413 });
+  }
+
   let body: unknown;
   try {
-    body = await req.json();
+    body = JSON.parse(rawBody);
   } catch {
     logEvent("warn", "lead.rejected", { leadId, reason: "invalid_json" });
     return NextResponse.json({ error: "Некорректный запрос" }, { status: 400 });
@@ -174,7 +201,7 @@ export async function POST(req: NextRequest) {
   const lead = normalizeLeadPayload(body);
   const spamReason = getSpamReason(lead);
 
-  // Honeypot intentionally receives a normal success response so simple bots do not adapt.
+  // Honeypot gets a normal response so simple bots do not learn that they were detected.
   if (spamReason === "honeypot") {
     logEvent("info", "lead.blocked", { leadId, reason: spamReason });
     return NextResponse.json({ ok: true });
@@ -250,30 +277,22 @@ export async function POST(req: NextRequest) {
   ].join("\n");
 
   const telegramStartedAt = Date.now();
-  try {
-    const telegram = await sendTelegram(tgText);
+  const telegram = await sendTelegram(tgText);
 
-    if (!telegram.configured) {
-      logEvent("warn", "lead.telegram_skipped", { leadId, reason: "not_configured" });
-    } else if (telegram.failed > 0) {
-      logEvent("warn", "lead.telegram_partial", {
-        leadId,
-        sent: telegram.sent,
-        failed: telegram.failed,
-        durationMs: Date.now() - telegramStartedAt,
-      });
-    } else {
-      logEvent("info", "lead.telegram_sent", {
-        leadId,
-        sent: telegram.sent,
-        durationMs: Date.now() - telegramStartedAt,
-      });
-    }
-  } catch (error) {
-    // Telegram is only a notification channel. The lead is already safely stored in Sheets.
-    logEvent("error", "lead.telegram_failed", {
+  if (!telegram.configured) {
+    logEvent("warn", "lead.telegram_skipped", { leadId, reason: "not_configured" });
+  } else if (telegram.failed > 0) {
+    logEvent("warn", "lead.telegram_partial", {
       leadId,
-      error: errorMessage(error),
+      sent: telegram.sent,
+      failed: telegram.failed,
+      error: telegram.errors.join("; ").slice(0, 500),
+      durationMs: Date.now() - telegramStartedAt,
+    });
+  } else {
+    logEvent("info", "lead.telegram_sent", {
+      leadId,
+      sent: telegram.sent,
       durationMs: Date.now() - telegramStartedAt,
     });
   }
