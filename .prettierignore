@@ -1,0 +1,10 @@
+.next/
+out/
+build/
+node_modules/
+coverage/
+.data/
+public/docs/
+public/images/
+app/fonts/
+package-lock.json
