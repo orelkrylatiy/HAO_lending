@@ -1,6 +1,5 @@
 import Script from "next/script";
-
-const COUNTER_ID = 111308239;
+import { YANDEX_METRIKA_COUNTER_ID } from "@/app/lib/analytics";
 
 export default function YandexMetrika() {
   return (
@@ -14,9 +13,9 @@ export default function YandexMetrika() {
                   if (document.scripts[j].src === r) { return; }
               }
               k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-          })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js?id=${COUNTER_ID}', 'ym');
+          })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js?id=${YANDEX_METRIKA_COUNTER_ID}', 'ym');
 
-          ym(${COUNTER_ID}, 'init', {
+          ym(${YANDEX_METRIKA_COUNTER_ID}, 'init', {
               ssr: true,
               webvisor: true,
               clickmap: true,
@@ -32,7 +31,7 @@ export default function YandexMetrika() {
         <div>
           {/* eslint-disable-next-line @next/next/no-img-element -- Yandex tracking pixel must bypass image optimization. */}
           <img
-            src={`https://mc.yandex.ru/watch/${COUNTER_ID}`}
+            src={`https://mc.yandex.ru/watch/${YANDEX_METRIKA_COUNTER_ID}`}
             style={{ position: "absolute", left: "-9999px" }}
             alt=""
           />
