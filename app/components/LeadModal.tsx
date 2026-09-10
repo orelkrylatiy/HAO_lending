@@ -4,6 +4,17 @@ import { useEffect, useRef, useState } from "react";
 import { getDictionary, Lang } from "@/app/lib/dictionaries";
 import { getLegalDocuments } from "@/app/lib/legal";
 
+const METRIKA_COUNTER_ID = 111308239;
+
+type MetrikaWindow = Window & {
+  ym?: (counterId: number, method: string, goal: string, params?: Record<string, unknown>) => void;
+};
+
+function reachMetrikaGoal(goal: string, params?: Record<string, unknown>) {
+  if (typeof window === "undefined") return;
+  (window as MetrikaWindow).ym?.(METRIKA_COUNTER_ID, "reachGoal", goal, params);
+}
+
 interface Props {
   isOpen: boolean;
   onClose: () => void;
@@ -22,6 +33,7 @@ export default function LeadModal({ isOpen, onClose, title, lang = "ru" }: Props
   const [isAgreementChecked, setIsAgreementChecked] = useState(false);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
+  const [errorReference, setErrorReference] = useState("");
   const dialogRef = useRef<HTMLDivElement>(null);
   const firstInputRef = useRef<HTMLInputElement>(null);
   const formStartedAtRef = useRef(Date.now());
@@ -36,6 +48,7 @@ export default function LeadModal({ isOpen, onClose, title, lang = "ru" }: Props
     setIsAgreementChecked(false);
     setStatus("idle");
     setErrorMsg("");
+    setErrorReference("");
     formStartedAtRef.current = Date.now();
   }, [isOpen, lang]);
 
@@ -87,6 +100,8 @@ export default function LeadModal({ isOpen, onClose, title, lang = "ru" }: Props
 
     setStatus("loading");
     setErrorMsg("");
+    setErrorReference("");
+    reachMetrikaGoal("lead_submit_attempt");
 
     try {
       const res = await fetch("/api/submit", {
@@ -103,15 +118,20 @@ export default function LeadModal({ isOpen, onClose, title, lang = "ru" }: Props
       const data = await res.json().catch(() => ({}));
 
       if (!res.ok) {
+        const reference = typeof data.leadId === "string" ? data.leadId : "";
+        setErrorReference(reference);
         setErrorMsg(typeof data.error === "string" ? data.error : dict.modal.error_send);
         setStatus("error");
+        reachMetrikaGoal("lead_submit_failed", { status: res.status });
         return;
       }
 
       setStatus("success");
+      reachMetrikaGoal("lead_submit_success");
     } catch {
       setErrorMsg(dict.modal.error_conn);
       setStatus("error");
+      reachMetrikaGoal("lead_submit_failed", { status: "network" });
     }
   };
 
@@ -217,7 +237,15 @@ export default function LeadModal({ isOpen, onClose, title, lang = "ru" }: Props
               />
             </div>
 
-            {status === "error" && <p className="text-red-600 text-[13px] text-center">{errorMsg}</p>}
+            {status === "error" && (
+              <div
+                role="alert"
+                className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-center text-[13px] text-red-700"
+              >
+                <p>{errorMsg}</p>
+                {errorReference && <p className="mt-1 text-[11px] opacity-80">ID: {errorReference}</p>}
+              </div>
+            )}
 
             <label className="flex items-start gap-3 text-[12px] leading-relaxed text-[#6b5c4e]">
               <input
