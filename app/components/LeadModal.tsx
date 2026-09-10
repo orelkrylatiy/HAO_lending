@@ -18,11 +18,26 @@ export default function LeadModal({ isOpen, onClose, title, lang = "ru" }: Props
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState(lang === "en" ? "" : "+7 ");
+  const [website, setWebsite] = useState("");
   const [isAgreementChecked, setIsAgreementChecked] = useState(false);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
   const dialogRef = useRef<HTMLDivElement>(null);
   const firstInputRef = useRef<HTMLInputElement>(null);
+  const formStartedAtRef = useRef(Date.now());
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    setName("");
+    setEmail("");
+    setPhone(lang === "en" ? "" : "+7 ");
+    setWebsite("");
+    setIsAgreementChecked(false);
+    setStatus("idle");
+    setErrorMsg("");
+    formStartedAtRef.current = Date.now();
+  }, [isOpen, lang]);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -32,11 +47,13 @@ export default function LeadModal({ isOpen, onClose, title, lang = "ru" }: Props
         onClose();
         return;
       }
+
       if (event.key === "Tab" && dialogRef.current) {
         const focusable = dialogRef.current.querySelectorAll<HTMLElement>(
-          'a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])'
+          'a[href], button:not([disabled]), input:not([disabled]):not([tabindex="-1"]), [tabindex]:not([tabindex="-1"])',
         );
         if (focusable.length === 0) return;
+
         const first = focusable[0];
         const last = focusable[focusable.length - 1];
         if (event.shiftKey && document.activeElement === first) {
@@ -66,6 +83,8 @@ export default function LeadModal({ isOpen, onClose, title, lang = "ru" }: Props
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
+    if (status === "loading") return;
+
     setStatus("loading");
     setErrorMsg("");
 
@@ -73,12 +92,18 @@ export default function LeadModal({ isOpen, onClose, title, lang = "ru" }: Props
       const res = await fetch("/api/submit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, phone, email }),
+        body: JSON.stringify({
+          name,
+          phone,
+          email,
+          website,
+          formStartedAt: formStartedAtRef.current,
+        }),
       });
-      const data = await res.json();
+      const data = await res.json().catch(() => ({}));
 
       if (!res.ok) {
-        setErrorMsg(data.error || dict.modal.error_send);
+        setErrorMsg(typeof data.error === "string" ? data.error : dict.modal.error_send);
         setStatus("error");
         return;
       }
@@ -121,7 +146,13 @@ export default function LeadModal({ isOpen, onClose, title, lang = "ru" }: Props
           <div className="text-center py-6 flex flex-col items-center gap-4">
             <div className="w-16 h-16 bg-[#F86704] rounded-full flex items-center justify-center">
               <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                <path d="M8 16l6 6 10-12" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path
+                  d="M8 16l6 6 10-12"
+                  stroke="white"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
               </svg>
             </div>
             <p className="text-[#121212] font-bold text-[18px]">{dict.modal.success_title}</p>
@@ -139,28 +170,50 @@ export default function LeadModal({ isOpen, onClose, title, lang = "ru" }: Props
             <input
               ref={firstInputRef}
               type="text"
+              name="name"
+              autoComplete="name"
               placeholder={dict.modal.name}
               value={name}
               onChange={(event) => setName(event.target.value)}
               required
+              maxLength={80}
               className="w-full bg-white rounded-xl px-4 py-4 text-[15px] font-medium text-[#121212] placeholder-[#a09080] outline-none border-2 border-transparent focus:border-[#F86704] transition-colors"
             />
             <input
               type="email"
+              name="email"
+              autoComplete="email"
               placeholder={dict.modal.email}
               value={email}
               onChange={(event) => setEmail(event.target.value)}
+              maxLength={120}
               className="w-full bg-white rounded-xl px-4 py-4 text-[15px] font-medium text-[#121212] placeholder-[#a09080] outline-none border-2 border-transparent focus:border-[#F86704] transition-colors"
             />
             <div className="flex items-center gap-2 bg-white rounded-xl px-4 py-4 border-2 border-transparent focus-within:border-[#F86704] transition-colors">
               {lang !== "en" && <span className="text-[13px] font-semibold text-[#6b5c4e]">RU</span>}
               <input
                 type="tel"
+                name="tel"
+                autoComplete="tel"
                 value={phone}
                 onChange={(event) => setPhone(event.target.value)}
                 required
+                maxLength={40}
                 className="flex-1 text-[15px] font-medium text-[#121212] placeholder-[#a09080] outline-none bg-transparent"
                 placeholder={dict.modal.phone_placeholder}
+              />
+            </div>
+
+            <div className="absolute left-[-10000px] top-auto h-px w-px overflow-hidden" aria-hidden="true">
+              <label htmlFor="website">Website</label>
+              <input
+                id="website"
+                name="website"
+                type="text"
+                value={website}
+                onChange={(event) => setWebsite(event.target.value)}
+                tabIndex={-1}
+                autoComplete="off"
               />
             </div>
 
@@ -175,7 +228,9 @@ export default function LeadModal({ isOpen, onClose, title, lang = "ru" }: Props
                 className="mt-0.5 h-4 w-4 flex-shrink-0 rounded border-[#d8c4b1] text-[#F86704] focus:ring-[#F86704]"
               />
               <span>
-                {lang === "ru" ? "Я ознакомлен(а) и согласен(на) с условиями " : "I have read and agree to the "}
+                {lang === "ru"
+                  ? "Я ознакомлен(а) и согласен(на) с условиями "
+                  : "I have read and agree to the "}
                 <a
                   href={legal.offer.href}
                   target="_blank"
