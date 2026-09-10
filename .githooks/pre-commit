@@ -1,0 +1,6 @@
+#!/bin/sh
+set -eu
+
+npm run format:staged
+npm run lint:check
+npm test
