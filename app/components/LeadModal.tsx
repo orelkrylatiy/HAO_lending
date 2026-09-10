@@ -35,7 +35,11 @@ export default function LeadModal({ isOpen, onClose, title, lang = "ru" }: Props
   const [errorReference, setErrorReference] = useState("");
   const dialogRef = useRef<HTMLDivElement>(null);
   const firstInputRef = useRef<HTMLInputElement>(null);
-  const formStartedAtRef = useRef(Date.now());
+  const formStartedAtRef = useRef(0);
+
+  useEffect(() => {
+    formStartedAtRef.current = Date.now();
+  }, []);
 
   useEffect(() => {
     if (!isOpen) return;
