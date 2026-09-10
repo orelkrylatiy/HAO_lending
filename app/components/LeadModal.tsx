@@ -40,20 +40,6 @@ export default function LeadModal({ isOpen, onClose, title, lang = "ru" }: Props
   useEffect(() => {
     if (!isOpen) return;
 
-    setName("");
-    setEmail("");
-    setPhone(lang === "en" ? "" : "+7 ");
-    setWebsite("");
-    setIsAgreementChecked(false);
-    setStatus("idle");
-    setErrorMsg("");
-    setErrorReference("");
-    formStartedAtRef.current = Date.now();
-  }, [isOpen, lang]);
-
-  useEffect(() => {
-    if (!isOpen) return;
-
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         onClose();
