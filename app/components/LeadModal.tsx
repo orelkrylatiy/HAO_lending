@@ -1,10 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { YANDEX_METRIKA_COUNTER_ID } from "@/app/lib/analytics";
 import { getDictionary, Lang } from "@/app/lib/dictionaries";
 import { getLegalDocuments } from "@/app/lib/legal";
-
-const METRIKA_COUNTER_ID = 111308239;
 
 type MetrikaWindow = Window & {
   ym?: (counterId: number, method: string, goal: string, params?: Record<string, unknown>) => void;
@@ -12,7 +11,7 @@ type MetrikaWindow = Window & {
 
 function reachMetrikaGoal(goal: string, params?: Record<string, unknown>) {
   if (typeof window === "undefined") return;
-  (window as MetrikaWindow).ym?.(METRIKA_COUNTER_ID, "reachGoal", goal, params);
+  (window as MetrikaWindow).ym?.(YANDEX_METRIKA_COUNTER_ID, "reachGoal", goal, params);
 }
 
 interface Props {
