@@ -56,7 +56,7 @@ export default function SignupClientBoundary({ lang = "ru" }: Props) {
     <>
       <Header lang={lang} onSignup={openModal} />
       <FloatingCTA lang={lang} onClick={openModal} />
-      <LeadModal lang={lang} isOpen={modalOpen} onClose={closeModal} />
+      {modalOpen && <LeadModal lang={lang} isOpen onClose={closeModal} />}
     </>
   );
 }

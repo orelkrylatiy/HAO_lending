@@ -12,9 +12,13 @@ const eslintConfig = defineConfig([
       "no-console": ["warn", { allow: ["warn", "error"] }],
     },
   },
-  // Override default ignores of eslint-config-next.
+  {
+    files: ["app/api/**/*.{js,mjs,ts}"],
+    rules: {
+      "no-console": ["warn", { allow: ["info", "warn", "error"] }],
+    },
+  },
   globalIgnores([
-    // Default ignores of eslint-config-next:
     ".next/**",
     "out/**",
     "build/**",
