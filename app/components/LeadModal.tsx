@@ -11,7 +11,12 @@ type MetrikaWindow = Window & {
 
 function reachMetrikaGoal(goal: string, params?: Record<string, unknown>) {
   if (typeof window === "undefined") return;
-  (window as MetrikaWindow).ym?.(YANDEX_METRIKA_COUNTER_ID, "reachGoal", goal, params);
+
+  try {
+    (window as MetrikaWindow).ym?.(YANDEX_METRIKA_COUNTER_ID, "reachGoal", goal, params);
+  } catch {
+    // Analytics must never block or change the lead submission flow.
+  }
 }
 
 interface Props {
