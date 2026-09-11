@@ -159,19 +159,6 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Слишком большой запрос" }, { status: 413 });
   }
 
-  const clientKey = getClientKey(req);
-  const rateLimit = checkRateLimit(clientKey);
-  if (!rateLimit.allowed) {
-    logEvent("warn", "lead.blocked", { leadId, reason: "rate_limit" });
-    return NextResponse.json(
-      { error: "Слишком много попыток. Попробуйте немного позже." },
-      {
-        status: 429,
-        headers: { "Retry-After": String(rateLimit.retryAfterSeconds) },
-      },
-    );
-  }
-
   let rawBody: string;
   try {
     rawBody = await req.text();
@@ -221,6 +208,20 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: validationError }, { status: 400 });
   }
 
+  // Count only valid submissions so normal typo correction cannot lock out a real user.
+  const clientKey = getClientKey(req);
+  const rateLimit = checkRateLimit(clientKey);
+  if (!rateLimit.allowed) {
+    logEvent("warn", "lead.blocked", { leadId, reason: "rate_limit" });
+    return NextResponse.json(
+      { error: "Слишком много попыток. Попробуйте немного позже." },
+      {
+        status: 429,
+        headers: { "Retry-After": String(rateLimit.retryAfterSeconds) },
+      },
+    );
+  }
+
   const date = formatMoscowTimestamp();
   logEvent("info", "lead.accepted", { leadId });
 
@@ -229,7 +230,8 @@ export async function POST(req: NextRequest) {
     await persistToGoogleSheets({
       date,
       name: sanitizeSpreadsheetCell(lead.name),
-      phone: sanitizeSpreadsheetCell(lead.phone),
+      // Keep the production Sheets phone representation unchanged while preventing formula parsing.
+      phone: ` ${lead.phone}`,
       email: sanitizeSpreadsheetCell(lead.email),
     });
     logEvent("info", "lead.sheets_saved", {
